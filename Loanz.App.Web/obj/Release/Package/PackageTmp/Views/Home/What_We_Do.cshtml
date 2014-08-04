@@ -1,0 +1,118 @@
+﻿@{
+	ViewBag.Title = "LOANZ - Real Loans from Real People";
+}
+
+@section styles{
+	@Styles.Render("~/Content/css/bootstrap")
+	@Styles.Render("~/Content/css/style")
+	@Styles.Render("~/Content/css/component")
+
+}
+
+@section scripts {
+	@Scripts.Render("~/scripts/jquery")
+	<script type="text/javascript">
+		$(document).ready(function () {
+			$('[data-toggle=offcanvas]').click(function () {
+				$('.row-offcanvas').toggleClass('active');
+			});
+		});
+	</script>
+}
+
+
+    <div class="content_com_page">
+        <div class="container">
+            <div class="com_header sky_bg">
+                <div class="com_header_left">
+                    <h3>About us</h3>
+                </div>
+
+                <div class="com_header_right">
+                    <a class="navbar-toggle navbar-toggle-left" data-toggle="offcanvas" data-target=".sidebar-nav">
+                        <img src="@Url.Content("~/content/images/left-menu-icon.png")" />
+                    </a>
+                    <h2 class="white"><b>What we do</b></h2>
+                </div>
+            </div>
+            <div class="clear"></div>
+            <div class="com_body">
+                <div class="com_body_left">
+                    <ul>
+                        <a href="@Url.Action("what_we_do","home")">
+                            <li class="active">What we do
+                            </li>
+                        </a>
+                        <a href="@Url.Action("meet_our_team","home")">
+                            <li>Meet our team
+                            </li>
+                        </a>
+                        <a href="#">
+                            <li>Meet our investors
+                            </li>
+                        </a>
+                        <a href="#">
+                            <li>In the press
+                            </li>
+                        </a>
+                        <a href="@Url.Action("faq","home")">
+                            <li>FAQs
+                            </li>
+                        </a>
+                        <a href="#">
+                            <li>Jobs
+                            </li>
+                        </a>
+                        <a href="#">
+                            <li>Contact Us
+                            </li>
+                        </a>
+                        <a href="#">
+                            <li>Partner with us</li>
+                        </a>
+                    </ul>
+                </div>
+
+                <!-- sidebar -->
+                <div class="row-offcanvas row-offcanvas-left">
+                    <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
+                        <ul class="nav">
+                            <h3>About us</h3>
+                            <li class="active"><a href="@Url.Action("what_we_do","home")">What we do</a></li>
+                            <li><a href="@Url.Action("meet_our_team","home")">Meet our team</a></li>
+                            <li><a href="#">Meet our investors</a></li>
+                            <li><a href="#">In the press</a></li>
+                            <li><a href="@Url.Action("faq","home")">FAQs</a></li>
+                            <li><a href="#">Jobs</a></li>
+                            <li><a href="#">Jobs</a></li>
+                            <li><a href="#">Contact Us</a></li>
+                            <li><a href="#">Partner with us</a></li>
+
+                        </ul>
+                    </div>
+                </div>
+                <div class="com_body_right">
+
+
+
+
+                    <p>
+                        LOANZ is a peer to peer lending platform that connects borrowers, people looking for cash, to lenders, people looking to invest cash. Borrowers get a great deal since they bypass banks, and investors get a great deal as they earn income on the loans they fund - without having to give a cut to the banks.
+                        <br />
+                        <br />
+
+                        <img src="@Url.Content("~/content/images/whatwedo-body-img.png")" />
+                        <br />
+                        <br />
+
+                        With LOANZ, people now have an alternative method to access cash they need, to grow their businesses, manage expenses and purchase real estate. A method that lowers costs, improves transparency and provides greater opportunities - for both borrowers and investors. By removing banks from the transaction, we are able to provide competitive rates and greater flexibility that is not possible through traditional banks. All done on the simple premise that in today's sharing economy, people invest in people.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="clear"></div>
+    <div class="footer_border m_top70">
+        <img src="@Url.Content("~/content/images/arrow_down_sky.png")" />
+    </div>

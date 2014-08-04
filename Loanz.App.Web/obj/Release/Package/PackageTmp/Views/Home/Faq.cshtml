@@ -1,0 +1,327 @@
+﻿@{
+	ViewBag.Title = "LOANZ - Real Loans from Real People";
+}
+
+@section styles{
+	@Styles.Render("~/Content/css/bootstrap")
+	@Styles.Render("~/Content/css/style")
+	<link href="@Url.Content("~/content/css/font-awesome.css")" type="text/css" rel="stylesheet" />
+	@Styles.Render("~/Content/css/component")
+
+}
+
+
+@section scripts{
+	@Scripts.Render("~/scripts/jquery")
+
+	<script type="text/javascript">
+        $(document).ready(function () {
+            $('[data-toggle=offcanvas]').click(function () {
+                $('.row-offcanvas').toggleClass('active');
+            });
+            $('#accordion').on('hidden.bs.collapse', hideIcon);
+            $('#accordion').on('shown.bs.collapse', showIcon);
+            
+            var $i = $('.panel-heading')
+                .find("i.indicator");
+
+            if ($i.length > 0) {
+                $i.addClass("fa");
+                $i.addClass('fa-caret-up');
+                var $f = $i.first();
+                $f.addClass("fa-caret-down");
+                $f.removeClass('fa-caret-up');
+            }
+
+
+
+        });
+
+        function hideIcon(e) {
+            var $i = $(e.target)
+                .prev('a')
+                .find("i.indicator");
+            $i.removeClass("fa-caret-down");
+            $i.addClass('fa-caret-up');
+        }
+
+        function showIcon(e) {
+            var $i = $(e.target)
+                .prev('a')
+                .find("i.indicator");
+            $i.removeClass("fa-caret-up");
+            $i.addClass('fa-caret-down');
+        }
+
+        
+    </script>
+}
+
+
+    <div class="content_com_page">
+        <div class="container">
+            <div class="com_header sky_bg">
+                <div class="com_header_left">
+                    <h3>About us</h3>
+                </div>
+
+                <div class="com_header_right">
+                    <a class="navbar-toggle navbar-toggle-left" data-toggle="offcanvas" data-target=".sidebar-nav">
+                        <img src="images/left-menu-icon.png" />
+                    </a>
+                    <h2 class="white"><b>FAQ</b></h2>
+                </div>
+            </div>
+            <div class="clear"></div>
+            <div class="com_body">
+                <div class="com_body_left">
+                    <ul>
+                        <a href="@Url.Action("what_we_do","home")">
+                            <li>What we do
+                            </li>
+                        </a>
+                        <a href="@Url.Action("meet_our_team","home")">
+                            <li>Meet our team
+                            </li>
+                        </a>
+                        <a href="#">
+                            <li>Meet our investors
+                            </li>
+                        </a>
+                        <a href="#">
+                            <li>In the press
+                            </li>
+                        </a>
+                        <a href="@Url.Action("faq","home")">
+                            <li class="active">FAQs
+                            </li>
+                        </a>
+                        <a href="#">
+                            <li>Jobs
+                            </li>
+                        </a>
+                        <a href="#">
+                            <li>Contact Us
+                            </li>
+                        </a>
+                        <a href="#">
+                            <li>Partner with us</li>
+                        </a>
+                    </ul>
+                </div>
+
+                <!-- sidebar -->
+                <div class="row-offcanvas row-offcanvas-left">
+                    <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
+                        <ul class="nav">
+                            <h3>About us</h3>
+                            <li class="active"><a href="@Url.Action("what_we_do","home")">What we do</a></li>
+                            <li><a href="@Url.Action("meet_our_team","home")">Meet our team</a></li>
+                            <li><a href="#">Meet our investors</a></li>
+                            <li><a href="#">In the press</a></li>
+                            <li><a href="@Url.Action("faq","home")">FAQs</a></li>
+                            <li><a href="#">Jobs</a></li>
+                            <li><a href="#">Jobs</a></li>
+                            <li><a href="#">Contact Us</a></li>
+                            <li><a href="#">Partner with us</a></li>
+
+                        </ul>
+                    </div>
+                </div>
+                <div class="com_body_right">
+                    <div class="panel-group" id="accordion">
+
+<h3>About Loanz</h3>
+
+                        <div class="panel panel-default">
+                              <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                            <div class="panel-heading">
+                              <h4 class="panel-title">        
+                                  What is peer to peer lending?
+
+
+                                <i class="indicator glyphicon glyphicon-chevron-down  pull-right sky"></i>
+                              </h4>
+                            </div>
+                              </a>
+                            <div id="collapseOne" class="panel-collapse collapse in">
+                              <div class="panel-body">
+                                Peer to peer lending is a way to allow people to borrow money from other people - their peers. What distinguishes a peer to peer network is that there is no middle man, in this case a bank. Transactions are done between the person looking for a loan and the person willing to provide the loan. At LOANZ, our job is to bring together borrowers and lenders in a confidential and secure environment where people can safely and confidently apply for, obtain adn the pay loans. 
+                              </div>
+                            </div>
+                          </div>
+                        <div class="panel panel-default">
+<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        Why do people borrow?           
+        <i class="indicator glyphicon glyphicon-chevron-up  pull-right sky"></i>
+      </h4>
+    </div>
+</a>
+    <div id="collapseTwo" class="panel-collapse collapse">
+      <div class="panel-body">
+        In many cases this is because they are unable to get a loan at an attractive rate from their local banks. Since the financial crisis, credit has tightened, and banks are demanding more from prospective borrowers. In a sense, banks are in a position to cheery pick the best borrowers, leaving many underserved. These underserved may not be high risk borrowers. In fact, many are not. Many are small businesses trying to expand or people working on their own that do not have a credit history or W2 wages. Peer to peer lending is perfectly suited to these people, providing a variety of loans that can help them get on their feet, cover those extra expenses or even take that long deserved vacation.
+      </div>
+    </div>
+  </div>
+                        <div class="panel panel-default">
+                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+                                <div class="panel-heading">
+                                  <h4 class="panel-title">
+                                    Why do people lend?           
+                                    <i class="indicator glyphicon glyphicon-chevron-up  pull-right sky"></i>
+                                  </h4>
+                                </div>
+                            </a>
+                                <div id="collapseThree" class="panel-collapse collapse">
+                                  <div class="panel-body">
+                                    LOANZ investors believe lending direct to consumers, without a middle man, provides them an opportunity to get a greater return on their investment. They could give their money to Wall Street, however they pay for that privilege which eats into their returns. By going direct there are no fees to pay the banks and they have control over the types of loans to invest in - form low risk, low return loans to high risk, high return loans.
+                                  </div>
+                                </div>
+                              </div>
+                        <div class="panel panel-default">
+<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapsefive">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        Is this a scam?           
+        <i class="indicator glyphicon glyphicon-chevron-up  pull-right sky"></i>
+      </h4>
+    </div>
+</a>
+    <div id="collapsefive" class="panel-collapse collapse">
+      <div class="panel-body">
+        Far from it. Governments in the United Kingdom, the United States, Germany, Australia and Canada have all implemented peer to peer lending programs. The signing of the recent JOBS act by congress formalized peer to peer lending in put in place the regulations and safeguards needed to help kick-start this part of the sharing economy. 
+      </div>
+    </div>
+  </div>
+
+<h3>Getting a Loan</h3>
+
+
+
+                        <div class="panel panel-default">
+<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseSix">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        Can anyone get a loan?           
+        <i class="indicator glyphicon glyphicon-chevron-up  pull-right sky"></i>
+      </h4>
+    </div>
+</a>
+    <div id="collapseSix" class="panel-collapse collapse">
+      <div class="panel-body">
+        Yes. Anyone can apply for a loan, but that does not mean that everyone can get approved. People looking to borrow still need to provide background information to help LOANZ better understand the person applying, and what the appropriate rate should be. 
+      </div>
+    </div>
+  </div>
+                        <div class="panel panel-default">
+<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseSeven">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        How much money can I apply for?           
+        <i class="indicator glyphicon glyphicon-chevron-up  pull-right sky"></i>
+      </h4>
+    </div>
+</a>
+    <div id="collapseSeven" class="panel-collapse collapse">
+      <div class="panel-body">
+        $35,000 for unsecured loans, which are loans that are not tied to any property like a house. Secured loans can be as high as $550,000, which are typically real estate loans.
+      </div>
+    </div>
+  </div>
+                        <div class="panel panel-default">
+<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseEight">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        How are rates determined?           
+        <i class="indicator glyphicon glyphicon-chevron-up  pull-right sky"></i>
+      </h4>
+    </div>
+</a>
+    <div id="collapseEight" class="panel-collapse collapse">
+      <div class="panel-body">
+        We look at everything from your working history and size of loan, to your current credit score and amount of debt. We don't' stop there though, these are just the hard numbers that everyone uses, including banks. At LOANZ, we also implement a number of "soft" metrics which further refine your LOANZ score. These are metrics propietary and tailored to the LOANZ underwriting method and ensure that we look at the person, not the number. 
+      </div>
+    </div>
+  </div>
+                        <div class="panel panel-default">
+<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseNine">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        How fast can a loan get approved?           
+        <i class="indicator glyphicon glyphicon-chevron-up  pull-right sky"></i>
+      </h4>
+    </div>
+</a>
+    <div id="collapseNine" class="panel-collapse collapse">
+      <div class="panel-body">
+        Anywhere from 2-4 business days. 
+      </div>
+    </div>
+  </div>
+
+
+                        <h3>Paying Back a Loan</h3>
+
+
+
+                        <div class="panel panel-default">
+<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseTen">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        How do I make payments?          
+        <i class="indicator glyphicon glyphicon-chevron-up  pull-right sky"></i>
+      </h4>
+    </div>
+</a>
+    <div id="collapseTen" class="panel-collapse collapse">
+      <div class="panel-body">
+        We take care of that for you. When you apply for a loan, you provide your bank account information to receive the cash, and also allow LOANZ to deduct payments twice a month. These payments will be automatically deducted from your account until the loan has been fully repaid. It is important that you budget your cash flow accordingly to avoid any missed payments.
+      </div>
+    </div>
+  </div>
+                        <div class="panel panel-default">
+<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseEleven">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        What happens if I can't make my payments?           
+        <i class="indicator glyphicon glyphicon-chevron-up  pull-right sky"></i>
+      </h4>
+    </div>
+</a>
+    <div id="collapseEleven" class="panel-collapse collapse">
+      <div class="panel-body">
+        First off, don't panic. Call us at LOANZ and we'll walk through what happened and how we can prevent it from occurring in the future. If you do miss a payment, you will be charged a penalty fee that will be added to your next payment. If you miss two payments, you will be connected with one of our payment specialists who will work with you to help get spending and payments back under control. If you miss a total of four consecutive payments, then we pass the loan onto a collection agency who will be tasked with getting the loan repaid. No-one wants this to happen. 
+      </div>
+    </div>
+  </div>
+                        <div class="panel panel-default">
+<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseTwelve">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        Can I pay off my loan at any time?           
+        <i class="indicator glyphicon glyphicon-chevron-up  pull-right sky"></i>
+      </h4>
+    </div>
+</a>
+    <div id="collapseTwelve" class="panel-collapse collapse">
+      <div class="panel-body">
+        Yes. You can pay-off your loan and there will be no pre-payment penalty. In fact, the opposite will occur, Your standing in the LOANZ marketplace will improve and in most cases, you will be able to apply for larger loans in the future and more favorable rates.
+      </div>
+    </div>
+  </div>
+                        
+  
+</div>
+
+                    
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="clear"></div>
+    <div class="footer_border m_top70">
+        <img src="images/arrow_down_sky.png" />
+    </div>

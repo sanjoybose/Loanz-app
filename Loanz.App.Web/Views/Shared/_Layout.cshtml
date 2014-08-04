@@ -1,0 +1,151 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>@ViewBag.Title</title>
+        <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+        <meta name="viewport" content="width=device-width" />
+        @RenderSection("styles", required: false)
+        @RenderSection("scripts", required: false)
+    </head>
+    <body>
+
+		  <!----Navbar----->
+    <div class="navbar-default navbar-fixed-top white_bg" role="navigation">
+        <div class="container white_bg">
+            <div class="navbar-header  white_bg">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+
+                </button>
+                <a href="@Url.Action("index","home")">
+                    <img src="@Url.Content("~/content/images/LOANZ-logo.png")" class="header-logo" />
+                </a>
+            </div>
+            <div class="navbar-collapse collapse white_bg">
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="@Url.Action("borrow","home")">Borrow</a></li>
+                    <li><a href="#">How It Works</a></li>
+                    <li><a href="@Url.Action("what_we_do", "home")">About Us</a></li>
+                    <li class="active"><a href="#">Login</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <!--Navbar -->
+
+
+
+        @RenderBody()
+
+
+
+		
+    <div class="clear"></div>
+    <div class="content-section footer">
+        <div class="container">
+
+            <div class="w-row">
+                <div class="w-col">
+                    <div class="footer_left">
+                        <div class="footer-logo">
+                            <a href="index.html">
+                                <img src="@Url.Content("~/content/images/LOANZ-logo-footer.png")" /></a>
+                        </div>
+                        <p>LOANZ is a peer to peer lending platform that connects borrowers, people looking for cash, 
+                            to lenders, people looking to invest cash. Borrowers get a great deal since they bypass banks, 
+                            and investors get a great deal as they earn income on the loans they fund - without having to give a cut to the banks. </p>
+                        <div class="clear"></div>
+                        <div class="footer_link_left">
+                            <div class="footer_link_com">
+                                <a href="#">
+                                    <img src="@Url.Content("~/content/images/footer_link_1.png")" /></a>
+                            </div>
+                            <div class="footer_link_com">
+                                <a href="#">
+                                    <img src="@Url.Content("~/content/images/footer_link_2.png")" /></a>
+                            </div>
+                            <div class="footer_link_com">
+                                <a href="#">
+                                    <img src="@Url.Content("~/content/images/footer_link_3.png")" /></a>
+                            </div>
+                            <div class="footer_link_com">
+                                <a href="#">
+                                    <img src="@Url.Content("~/content/images/footer_link_4.png")" /></a>
+                            </div>
+                            <div class="footer_link_com">
+                                <a href="#">
+                                    <img src="@Url.Content("~/content/images/footer_link_5.png")" /></a>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="footer_right">
+                        <div class="w-col w-col-3">
+
+                            <h6>ABOUT</h6>
+                            <a class="footer-links" href="@Url.Action("what_we_do", "home")">About Us</a>
+                            <a class="footer-links" href="@Url.Action("meet_our_team", "home")">Meet our Team</a>
+                            <a class="footer-links" href="#">Meet our Investors</a>
+                            <a class="footer-links" href="#">In the Press</a>
+                            <a class="footer-links" href="@Url.Action("faq", "home")">FAQ</a>
+                            <a class="footer-links" href="#">Jobs</a>
+                            <a class="footer-links" href="#">Contact us</a>
+                            <a class="footer-links" href="#">Partners</a>
+                        </div>
+
+                        <div class="w-col w-col-3">
+                            <div class="small-divider baby"></div>
+                            <h6>INVEST</h6>
+                            <a class="footer-links" href="#">Investor Portal</a>
+
+                        </div>
+
+                        <div class="w-col w-col-3">
+                            <div class="small-divider baby"></div>
+                            <h6>BORROW</h6>
+                            <a class="footer-links" href="#">Why People Borrow</a>
+                            <a class="footer-links" href="#">Why People Lend</a>
+                            <a class="footer-links" href="#">The LOANZ Advantage</a>
+
+
+                        </div>
+
+                        <div class="w-col w-col-3">
+                            <div class="small-divider baby"></div>
+                            <h6>Peer to Peer Lending</h6>
+                            <a class="footer-links" href="#">Peer to Peer Lending</a>
+                            <a class="footer-links" href="#">The Borrowing Process</a>
+                            <a class="footer-links" href="#">LOANZ Calculator</a>
+
+
+                        </div>
+                    </div>
+                </div>
+                <div class="w-col">
+                    <div class="footer_bot">
+                        <div class="footer_bot_left">
+                            <p>
+                                Copyright 2014 LOANZ. All right reserved.<br />
+                                Privacy | Terms of use | Compliance
+                            </p>
+
+                        </div>
+                        <div class="footer_bot_right">
+                            <img src="@Url.Content("~/content/images/safe-icon.png")" />
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+       
+    </body>
+</html>

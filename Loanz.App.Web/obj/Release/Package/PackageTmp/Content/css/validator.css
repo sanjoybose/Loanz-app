@@ -1,0 +1,49 @@
+
+/* Tooltips helpers */
+.formItem .tooltip{ float:left; top:2px; left:7px; position:relative; z-index:2; }
+.formItem .tooltip:hover{ z-index:3; }
+   .formItem .tooltip > span{ display:inline-block; width:15px; height:15px; line-height:15px; font-size:0.9em; font-weight:bold; text-align:center; color:#FFF; cursor:help; background-color:#00AEEF; position:relative; border-radius:10px; }
+    .formItem .tooltip .content{ opacity:0; width:200px; background-color:#333; color:#FFF; font-size:0.9em; position:absolute; top:0; left:20px; padding:8px; border-radius:6px; pointer-events:none; transition:0.2s cubic-bezier(0.1, 0.1, 0.25, 2); -webkit-transition:0.3s cubic-bezier(0.1, 0.2, 0.5, 2.2); -moz-transition:0.3s cubic-bezier(0.1, 0.2, 0.5, 2.2); }
+        .formItem .tooltip p{ padding:0; }
+   .formItem .tooltip.down .content{ left:auto; right:0; top:30px; }
+   .formItem .tooltip:hover .content{ opacity:1; left:36px; }
+      .formItem .tooltip .content b{ height:0; width:0; border-color:#333 #333 transparent transparent; border-style:solid; border-width:9px 7px; position:absolute; left:-14px; top:8px; }
+        .formItem .tooltip.down .content b{ left:auto; right:6px; top:-10px; border-width:5px; border-color:transparent #333 #333 transparent; }
+
+/* alerts (when validation fails) */
+.formItem .alert{ float:left; margin:2px 0 0 20px; padding:3px 10px; color:#FFF; border-radius:3px 4px 4px 3px; background-color:#CE5454; white-space:pre; position:absolute; left:-15px; opacity:0; z-index:1; transition:0.15s ease-out; font-size:12px; line-height:1.5em; font-family:Helvetica, sans-serif, Arial; }
+.formItem .alert::after{ content:''; display:block; height:0; width:0; border-color:transparent #CE5454 transparent transparent; border-style:solid; border-width:11px 7px; position:absolute; left:-13px; top:1px; }
+.formItem.bad .alert{ left:0; opacity:1; -moz-animation:.7s 1 shake linear; -webkit-animation:0.7s 1 shake linear; }
+
+
+@keyframes shake{
+    15%{ transform:translateX(-5px); }
+    30%{ transform:translateX(5px); }
+	45%{ transform:translateX(-3px); }
+	60%{ transform:translateX(3px); }
+	75%{ transform:translateX(2px); }
+	100%{ transform:none; }
+}
+@-webkit-keyframes shake{
+    25%{ -webkit-transform:translateX(-6px); }
+    75%{ -webkit-transform:translateX(6px); }
+}
+
+.formItem label, .formItem .label{ float:left; }
+.formItem label span, .formItem .label{ float:left; } .formItem span{ float: left; }
+.formItem input, .formItem textarea{ float:left; -webkit-transition:0.2s; -moz-transition:0.2s; transition:0.2s; }
+.formItem input[type=checkbox]{ width:auto; }
+	
+.label ~ label{ vertical-align:middle; margin:0.3em 1.2em 0 0; } 
+	
+.formItem textarea{  }
+.formItem select{ float:left; }
+
+.formItem > .extra{ float:left; font-size:0.9em; color:#999; line-height:2em; margin-left:13px; }
+    
+.formItem.multi .input{ float:left; }
+	.formItem.multi input{ float:left; }
+	
+.bad input, 
+.bad select, 
+.bad textarea{ border:1px solid #CE5454; box-shadow:0 0 4px -2px #CE5454; position:relative; left:0; }

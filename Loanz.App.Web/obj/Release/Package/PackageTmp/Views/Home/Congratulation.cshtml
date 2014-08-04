@@ -1,0 +1,180 @@
+﻿@{
+    ViewBag.Title = "LOANZ - Get Started";
+}
+
+@section styles {
+    @Styles.Render("~/Content/css/bootstrap")
+    @Styles.Render("~/Content/css/normalize")
+    @Styles.Render("~/Content/css/congratulation")
+
+	<link href="@Url.Content("~/Content/css/validator.css")" rel="stylesheet" type="text/css" />
+}
+
+
+@section scripts {
+    @Scripts.Render("~/scripts/jquery")
+    @Scripts.Render("~/scripts/ko")
+
+    <script type="text/javascript" src="@Url.Content("~/Scripts/purl.js")"></script>
+	<script type="text/javascript" src="@Url.Content("~/Scripts/jquery.maskedinput.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/vm_loan.js")"></script>
+
+    <script type="text/javascript">
+        var vm = null;
+        $(document).ready(function () {
+
+            var urlOptions = purl().param();
+            if (urlOptions.pv && urlOptions.cRating) {
+                var pv = parseInt(urlOptions.pv);
+                var cRating = parseInt(urlOptions.cRating);
+                var reason = urlOptions.reason;
+                if (!isNaN(pv) && !isNaN(cRating)) {
+                    vm = new vmLoan(pv, cRating, reason);
+                }
+                else {
+                    vm = new vmLoan();
+                }
+            }
+            else {
+                vm = new vmLoan();
+            }
+
+            ko.applyBindings(vm);
+            vm.initValidation();
+        });
+    </script>
+}
+
+
+	<div class="cong_navbar">
+		<div class="container">
+            <img src="@Url.Content("~/Content/images/congratulation/congratulation_nav.png")" />
+        </div>
+    </div>
+    <div class="application_content white_bg ">
+        <div class="container">
+            <div class="cong_amt_cont">
+<h2>You have been qualified for the following <b>Small Business</b> loan:</h2>
+                <div class="cong_payment_body">
+                    <div class="payment_com_cont">
+                        <div class="payment_com_top">
+                            <h3>Monthly Payment</h3>
+                        </div>
+                        <div class="payment_com_bot">
+                            <h4 data-bind="text: '$' + emi.toDigit()">$50,000</h4>
+                        </div>
+                    </div>
+
+                    <div class="payment_com_cont">
+                        <div class="payment_com_top">
+                            <h3>Principal</h3>
+                        </div>
+                        <div class="payment_com_bot">
+                            <h4 data-bind="text: '$' + PV.toDigit()">$50,000</h4>
+                        </div>
+                    </div>
+                    <div class="payment_com_cont">
+                        <div class="payment_com_top">
+                            <h3>Interest</h3>
+                        </div>
+                        <div class="payment_com_bot">
+                            <h4 data-bind="text: '$' + (FV() - PV()).toString().toDigit()">$50,000</h4>
+                        </div>
+                    </div>
+                    <div class="payment_com_cont">
+                        <div class="payment_com_top">
+                            <h3>Repayment Total</h3>
+                        </div>
+                        <div class="payment_com_bot">
+                            <h4 data-bind="text: '$' + FV.toDigit()">$50,000</h4>
+                        </div>
+                    </div>
+                    <div class="payment_com_cont">
+                        <div class="payment_com_top">
+                            <h3>APR</h3>
+                        </div>
+                        <div class="payment_com_bot">
+                            <h4 data-bind="text: r() + '%'">$50,000</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="application_confirm_content white_bg m_bot70">
+                @*<a href="#" class="Security_icon"><img src="@Url.Content("~/Content/images/Security-icon.png")" /></a>*@
+                <img src="@Url.Content("~/Content/images/congrats.png")" />
+                <div class="text-center">
+                <a href="@Url.Action("login", "home")" >
+                            <img src="@Url.Content("~/Content/images/submit_btn.png")" /></a>
+                </div>
+            @*<div>
+                <h2><b>Final Step before Funding:</b></h2>
+                <h3>1: Digitally sign these forms</h3>
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" value="">
+                    </label>
+                </div>
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" value="">
+                    </label>
+                </div>
+                <h3>2: Enter your bank information</h3>
+                <p>This is where you would like the funds to be deposited</p>
+                <div class="bank_inf_left">
+                    <div class="row">
+
+                        <div class="col-xs-12 col-sm-6 formItem">
+                            <h3>First name:</h3>
+                            <input type="text" class="form-control" required="required" name="firstName" data-message-required="Please enter first name" />
+                        </div>
+                        <div class="col-xs-12 col-sm-6 formItem">
+                            <h3>Last name:</h3>
+                            <input type="text" class="form-control" required="required" name="lastName" data-message-required="Please enter last name" />
+                        </div>
+                        <div class="clear"></div>
+
+                        <img src="@Url.Content("~/Content/images/your-bank-sample.png")" />
+                        <div class="col-xs-12 col-sm-6 formItem">
+                            <h3>Routing Number:</h3>
+                            <input id="routingNo" type="text" class="form-control" required="required" name="routingNo" data-message-required="Please enter routing number" />
+                            <span>(9 digits)</span>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 formItem">
+                            <h3>Account Number:</h3>
+                            <input id="accNo" type="text" class="form-control" required="required" name="accNo" data-message-required="Please enter account number" />
+                            <span>(3-17 digits)</span>
+                        </div>
+                        <div class="clear"></div>
+                        <div class="clear m_top10"></div>
+                        <br />
+                        <a id="btnSubmit" type="button" class="col-xs-4" href="#" >
+                            <img src="@Url.Content("~/Content/images/submit_btn.png")" /></a>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+
+                <div class="bank_inf_right">
+                    <img src="@Url.Content("~/Content/images/Loanz_QR.png")" />
+                    <p>
+                        Scane this encrypted QR Code
+                        <br />
+                        to download the EZ Loanz App to<br />
+                        Complete your loan application.
+                    </p>
+                </div>
+            </div>*@
+            <div class="clear"></div>
+
+        </div>
+        </div>
+    </div>
+    <div class="clear"></div>
+    
+
+    <div class="clear"></div>
+    <div class="footer_border">
+        <img src="@Url.Content("~/Content/images/arrow_down_sky.png")" />
+    </div>
+    
+    @Scripts.Render("~/scripts/validator")

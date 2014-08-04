@@ -1,0 +1,143 @@
+﻿@{
+    ViewBag.Title = "Login";
+}
+
+@section styles{
+	@Styles.Render("~/Content/css/bootstrap")
+	@Styles.Render("~/Content/css/style")
+	<style type="text/css">
+		.application_navbar_lending {
+			width: 100%;
+			border-top: solid 5px #0c1c2c;
+			min-height: 85px;
+			margin-top: 65px;
+		}
+
+			.application_navbar_lending .top {
+				width: 100%;
+				border-bottom: solid 5px #ddd7d9;
+				min-height: 75px;
+				background: #01b3e3;
+			}
+
+				.application_navbar_lending .top .left {
+					width: 70%;
+					min-height: 75px;
+					float: left;
+					padding-top: 15px;
+				}
+
+					.application_navbar_lending .top .left h1 {
+						font-size: 35px;
+						color: #fff;
+						margin: 0;
+					}
+
+				.application_navbar_lending .top .right {
+					width: 30%;
+					min-height: 75px;
+					float: right;
+					padding: 15px;
+				}
+
+		.lending_statement_cont {
+			width: 75%;
+			margin: 0 auto;
+		}
+
+		.Disclosure_Statement {
+			width: 100%;
+			height: 440px;
+			border-top: solid 3px #2c4ea6;
+			border-bottom: solid 3px #2c4ea6;
+			overflow-y: scroll;
+		}
+
+			.Disclosure_Statement .lender {
+				width: 50%;
+				float: left;
+			}
+
+			.Disclosure_Statement .borrower {
+				width: 49%;
+				float: left;
+			}
+
+		.Disclosure_Statement_com {
+			width: 25%;
+			height: 250px;
+			float: left;
+			border: solid 1px #ccc;
+			padding: 10px 25px;
+			margin-top: 15px;
+		}
+
+		.certifications img {
+			vertical-align: bottom;
+		}
+	</style>
+}
+
+@section scripts {
+	@Scripts.Render("~/scripts/jquery")
+
+	
+}
+
+
+
+
+<div class="application_navbar_lending">
+	<div class="top">
+		<div class="container">
+			<div class="left">
+				<a href="#" class="float_left">
+					<img src="@Url.Content("~/content/images/app_arrow_left.png")" /></a>
+				<h1 class="float_left">Login</h1>
+			</div>
+			<div class="right">
+				<a href="#" class="float_right">
+					<img src="@Url.Content("~/content/images/app_lock_right.png")" /></a>
+
+			</div>
+		</div>
+	</div>
+	<div class="clear"></div>
+</div>
+<div class="container">
+	<div class="login_body">
+            <div class="login_header">
+               
+                <h3>Please login to your account:</h3>
+            </div>
+            <h3 class="login_txt"></h3>
+            <form method="post" action="/login">
+                <table class="login_form">
+					<tr>
+                        <td>Username:</td>                        
+                    </tr>
+                    <tr>                       
+                        <td><input id="txtUserName" type="text" name="username" /></td>
+                    </tr>
+					 <tr>
+                        <td>Password:</td>                        
+                    </tr>
+                    <tr>                        
+                        <td><input id="txtPassword" type="password" name="password" /></td>
+                    </tr>
+					<tr>
+						<td><a href="#">Forgot Password?</a></td>
+					</tr>
+                    <tr>
+                       
+                        <td>
+                            <input id="btnLogin" type="submit" value="Log In" class="login_btn" /><br />
+                            
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+	<br />
+	<br />
+</div>

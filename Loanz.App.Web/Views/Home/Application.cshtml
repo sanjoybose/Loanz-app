@@ -1,0 +1,1158 @@
+﻿@{
+    ViewBag.Title = "LOANZ - Get Started";
+}
+
+@section styles {
+    @Styles.Render("~/Content/css/bootstrap")
+    @Styles.Render("~/Content/css/normalize")
+    @Styles.Render("~/Content/css/application")
+    @Styles.Render("~/Content/css/jqueryui")
+    @Styles.Render("~/Content/css/kendotheme")
+
+    <link href="@Url.Content("~/Content/css/toggles.css")" rel="Stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/css/validator.css")" rel="stylesheet" type="text/css" />
+}
+
+
+@section scripts {
+    @Scripts.Render("~/scripts/jquery")
+    @Scripts.Render("~/scripts/jqueryui")
+    @Scripts.Render("~/scripts/kendoslider")
+    @Scripts.Render("~/scripts/ko")
+    @Scripts.Render("~/scripts/ko-kendo")
+    @Scripts.Render("~/scripts/carousel")
+    
+    <script type="text/javascript" src="@Url.Content("~/Scripts/purl.js")"></script>
+	<script type="text/javascript" src="@Url.Content("~/Scripts/jquery.maskedinput.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/toggles.js")"></script>
+
+    <script type="text/javascript" src="@Url.Content("~/Scripts/vm_loan.js")"></script>
+
+    <script type="text/javascript">
+        var vm = null;
+        $(document).ready(function () {
+
+            $("#loan_reason").flexisel({
+                visibleItems: 1,
+                animationSpeed: 1
+            });
+            $("#loan_term").toggles({
+                type: "select",
+                text: {
+                    on: '3 yrs',
+                    off: '5 yrs'
+                },
+                on: true
+            });
+
+            $("#loan_term").on('toggle', function (e, active) {
+                if (active) {//ON
+                    vm.t_display($(e.target).data('toggles').opts.text.on);
+                } else {//OFF
+                    vm.t_display($(e.target).data('toggles').opts.text.off);
+                }
+            });
+
+            //$('#loan_reason .nbs-flexisel-item').on('click', function (e) {
+            //    e.preventDefault();
+            //    var flag = $(this).hasClass('selected');
+            //    $('.nbs-flexisel-item.selected').removeClass('selected');
+            //    if (flag) {
+            //        $(this).removeClass('selected');
+            //        vm.reason('');
+            //    } else {
+            //        $(this).addClass('selected');
+            //        vm.reason($.trim($(this).attr('data-name')));
+            //    }
+            //});
+
+            $('#loan_reason').parent().find('.nbs-flexisel-nav-left').click(function () {
+                setTimeout(function () {
+                    vm.reason(getFlexiselSelectedItem("#loan_reason"));
+                }, 100);
+            });
+            $('#loan_reason').parent().find('.nbs-flexisel-nav-right').click(function () {
+                setTimeout(function () {
+                    vm.reason(getFlexiselSelectedItem("#loan_reason"));
+                }, 100);
+            });
+
+            var urlOptions = purl().param();
+            if (urlOptions.pv && urlOptions.cRating) {
+                var pv = parseInt(urlOptions.pv);
+                var cRating = parseInt(urlOptions.cRating);
+                var reason = urlOptions.reason;
+                if (!isNaN(pv) && !isNaN(cRating)) {
+                    vm = new vmLoan(pv, cRating, reason);
+                }
+                else {
+                    vm = new vmLoan();
+                }
+            }
+            else {
+                vm = new vmLoan();
+            }
+            if (urlOptions.reason && $.trim(urlOptions.reason).length > 0) {
+                $('.nbs-flexisel-item[data-name="' + $.trim(urlOptions.reason) + '"]').addClass('selected');
+                //vm.reason(urlOptions.reason);
+                var int = setInterval(function () {
+                    if ($('.nbs-flexisel-item.selected').index() != 1) {
+                        $('.nbs-flexisel-nav-right').first().trigger('click');
+                    } else {
+                        clearInterval(int);
+                    }
+                }, 3);
+
+            }
+            ko.applyBindings(vm);
+
+            $('.k-draghandle').attr('title', '');
+
+            $(document).on("change", ".selResidence", function () {
+                if ($(this).val() == "Owned") {
+                    $(".txtMortgage").removeAttr("disabled");
+                }
+                else {
+                    $(".txtMortgage").val("");
+                    $(".txtMortgage").parent(".formItem").removeClass("bad");
+                    $(".txtMortgage").attr("disabled", "disabled");
+                }
+            })
+        });
+
+        function load() {
+            var pb = $("#loadingProgressBar").data("kendoProgressBar");
+            pb.value(0);
+
+            var interval = setInterval(function () {
+                if (pb.value() < 100) {
+                    pb.value(pb.value() + 1);
+                } else {
+                    clearInterval(interval);
+                }
+            }, 30);
+        }
+
+        function getFlexiselSelectedItem(element_selector) {
+        	var curr = $(element_selector + " li:nth-child(2)");
+        	return curr.data("name");
+        }
+
+    </script>
+}
+
+
+	<div class="application_navbar">
+		<div class="container">
+			<div class="loanz_info_body">
+				<div class="loanz_info_top">
+					<h2>Your Loan Information</h2>
+				</div>
+				<div class="clear"></div>
+				<div class="loanz_info_top_left">
+					<div class="loanz_info_com">
+						<div class="loanz_info_com_head">Amount</div>
+						<div class="clear"></div>
+						<h3 data-bind="text: '$' + PV.toDigit()">$50,000</h3>
+						<input class="slider" data-bind="kendoSlider: { value: PV, min: 0, max: 100000, smallStep: 5000, largeStep: 25000, showButtons: false, tickPlacement: 'bottomRight', showTickText: false, tooltip: { enable: false } }"></input>
+					</div>
+					<div class="loanz_info_com">
+						<div class="loanz_info_com_head">Credit</div>
+						<div class="clear"></div>
+						<h3 data-bind="text: cRating_display">$50,000</h3>
+						<input class="slider" data-bind="kendoSlider: { value: cRating, min: 1, max: 4, smallStep: 1, largeStep: 1, showButtons: false, tickPlacement: 'bottomRight', showTickText: false, tooltip: { enabled: false } }" />
+					</div>
+					<div class="loanz_info_com">
+						<div class="loanz_info_com_head">Purpose</div>
+						<div class="clear"></div>
+						<h3 data-bind="text: reason">$50,000</h3>
+						<ul id="loan_reason">
+							<li data-name="Vacation">
+								<a>
+									<img src="@Url.Content("~/Content/images/vacation-icon.png")" />
+								</a>
+							</li>
+							<li data-name="Small Business">
+								<a>
+									<img src="@Url.Content("~/Content/images/small-business-icon.png")" />
+								</a>
+							</li>
+							<li data-name="Cash">
+								<a>
+									<img src="@Url.Content("~/Content/images/cash-icon.png")" />
+								</a>
+							</li>
+							<li data-name="Debt">
+								<a>
+									<img src="@Url.Content("~/Content/images/debt-icon.png")" />
+								</a>
+							</li>
+							<li data-name="Real Estate">
+								<a>
+									<img src="@Url.Content("~/Content/images/real-estate-icon.png")" />
+								</a>
+							</li>
+						</ul>
+					</div>
+					<div class="loanz_info_com">
+						<div class="loanz_info_com_head">Term</div>
+						<div class="clear"></div>
+						<h3 data-bind="text: t_display">3 years</h3>
+						<div id="loan_term" class="switch toggle-light" ></div>
+					</div>
+				</div>
+				<div class="loanz_info_top_right">
+					<div class="loanz_info_payment_cont">
+						<table>
+							<tr>
+								<td><h3>Monthly Payment</h3></td>
+								<td> <h3 class="loanz_info_top_right_values" data-bind="text: '$' + emi.toDigit()">$1,777</h3></td>
+							</tr>
+							<tr>
+								<td><h3>Principal</h3></td>
+								<td> <h3 class="loanz_info_top_right_values" data-bind="text: '$' + PV.toDigit()">$1,777</h3></td>
+							</tr>
+							<tr>
+								<td><h3>Interest</h3></td>
+								<td> <h3 class="loanz_info_top_right_values" data-bind="text: '$' + (FV() - PV()).toString().toDigit()">$1,777</h3></td>
+							</tr>
+							<tr>
+								<td><h3>Repayment Total</h3></td>
+								<td> <h3 class="loanz_info_top_right_values" data-bind="text: '$' + FV.toDigit()">$50,000</h3></td>
+							</tr>
+							<tr>
+								<td class="bb_none"><h3>APR</h3></td>
+								<td class="bb_none">
+									<h3  class="loanz_info_top_right_values" data-bind="text: r() + '%'">$63,987</h3>
+								</td>
+							</tr>
+						</table>
+
+                    </div>
+                    <h5>Estimated Terms</h5>
+                    <p>Continue the application to get approval and your final rate</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="application_content white_bg ">
+        <div class="container">
+            <div><h1 style="margin-bottom: 0px;">To get this loan, please answer a few simple questions below.</h1></div>
+            <div class="application_content_top">
+                <hr />
+                <div class="application_content_left">
+					<div class="clear"></div>
+					<!-- ko template: { if: cRating() == 4, afterRender: initValidation } -->                    
+                    <div>
+                        <div class="col-xs-12 col-sm-5 formItem">
+                            <h3>First name:</h3>
+                            <input type="text" class="form-control" required="required" name="firstName" data-message-required="Please enter first name" />
+                        </div>
+                        <div class="col-xs-12 col-sm-5 formItem">
+                            <h3>Last name:</h3>
+                            <input type="text" class="form-control" required="required" name="lastName" data-message-required="Please enter last name" />
+                        </div>
+                        <div class="clear"></div>
+                        <br />
+                        <div class="col-xs-12 col-sm-5 formItem multi required">
+                            <h3>Social Security Number:</h3>
+                            <div>
+                                <input type="password" id="txtSSN1" maxlength="3" class="form-control width-3 txtSSN1" placeholder="123" />
+                                <span>-</span>
+                                <input type="password" id="txtSSN2" maxlength="2" class="form-control width-3 txtSSN2" placeholder="45" />
+                                <span>-</span>
+                                <input type="text" id="txtSSN3" maxlength="4" class="form-control width-4 txtSSN3" placeholder="6789" />
+
+                                <input data-validate-length-range="9" data-validate-pattern="numeric" name="serial" type="hidden" required='required' style="width: 256px"data-message-required="Please enter SSN" />
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                        <br />
+                        <hr />
+                        <div class="col-xs-12 col-sm-5 formItem">
+                            <h3>Email Address:</h3>
+                            <input type="text" class="form-control" data-validate-pattern="^\w+@@[a-zA-Z_0-9]+?\.[a-zA-Z]{2,4}$" required="required" name="email" data-message-required="Please enter email address" />
+                        </div>
+                        <div class="clear"></div>
+                        <br />
+                        <div class="col-xs-12 col-sm-5 formItem">
+                            <h3>Create Password:</h3>
+                            <input type="password" class="form-control" required="required" name="firstName" data-message-required="Please enter password" />
+                        </div>
+                        <div class="col-xs-12 col-sm-5 formItem">
+                            <h3 class="red">Confirm Password:</h3>
+                            <input type="password" class="form-control" required="required" name="lastName" data-message-required="Please enter password" />
+                        </div>
+                        <div class="clear"></div>
+                        <br />
+                        <div class="col-xs-12 col-sm-9">
+                            Clicking the box below constitutes your electronic signature to:
+                    <div class="checkbox formItem">
+                        <label>
+                            <input type="checkbox" value="" required="required" name="terms" data-message-required="Please accept our terms" />
+                            the <a href="#">Credit Report Authorization</a> & <a href="#">Terms of Use</a> and for Prosper to verify your income.
+                        </label>
+                    </div>
+                        </div>
+                        <div class="clear"></div>
+                        <div class="rate_btn">
+
+
+                            <a type="button" class="col-sm-10" href="#" data-bind="click: getRate">
+                                <img src="@Url.Content("~/Content/images/application/rate-btn.png")" /></a>
+                        </div>
+                        <div class="col-xs-12 col-sm-7">
+                            <div class="checking_content">
+
+                                <img src="@Url.Content("~/Content/images/application/credit-score.png")" /><span class="red">Checking your rate will not affect your credit score</span>
+                            </div>
+                            <br />
+
+                        </div>
+                    </div>
+                    <!-- /ko -->
+					
+					<!-- ko template: { if: (cRating() == 3 || cRating() == 2), afterRender: initValidation } -->
+                    <div>
+
+                        <div class="col-xs-12 col-sm-5 formItem">
+                            <h3>First name:</h3>
+                            <input type="text" class="form-control" required="required" name="firstName" data-message-required="Please enter first name" />
+                        </div>
+                        <div class="col-xs-12 col-sm-5 formItem">
+                            <h3>Last name:</h3>
+                            <input type="text" class="form-control" required="required" name="lastName" data-message-required="Please enter last name" />
+                        </div>
+                        <div class="clear"></div>
+
+                        <div class="col-xs-12 col-sm-5 formItem">
+                            <h3>Address:</h3>
+                            <input type="text" class="form-control" required="required" name="address" data-message-required="Please enter address" />
+                        </div>
+                        <div class="clear"></div>
+                        <div class="col-xs-12 col-sm-5 formItem">
+                            <h3>City:</h3>
+                            <input type="text" class="form-control" required="required" name="city" data-message-required="Please enter first city" />
+                        </div>
+                        <div class="col-xs-6 col-sm-2 formItem">
+                            <h3>State:</h3>
+                            <select class="form-control required" name="state" data-message-required="Please select state">
+                                <option value="">Select</option>
+                                <option value="AL">AL</option>
+                                <option value="AK">AK</option>
+                                <option value="AZ">AZ</option>
+                                <option value="AR">AR</option>
+                                <option value="CA">CA</option>
+                                <option value="CO">CO</option>
+                                <option value="CT">CT</option>
+                                <option value="DE">DE</option>
+                                <option value="DC">DC</option>
+                                <option value="FL">FL</option>
+                                <option value="GA">GA</option>
+                                <option value="HI">HI</option>
+                                <option value="ID">ID</option>
+                                <option value="IL">IL</option>
+                                <option value="IN">IN</option>
+                                <option value="IA">IA</option>
+                                <option value="KS">KS</option>
+                                <option value="KY">KY</option>
+                                <option value="LA">LA</option>
+                                <option value="ME">ME</option>
+                                <option value="MD">MD</option>
+                                <option value="MA">MA</option>
+                                <option value="MI">MI</option>
+                                <option value="MN">MN</option>
+                                <option value="MS">MS</option>
+                                <option value="MO">MO</option>
+                                <option value="MT">MT</option>
+                                <option value="NE">NE</option>
+                                <option value="NV">NV</option>
+                                <option value="NH">NH</option>
+                                <option value="NJ">NJ</option>
+                                <option value="NM">NM</option>
+                                <option value="NY">NY</option>
+                                <option value="NC">NC</option>
+                                <option value="ND">ND</option>
+                                <option value="OH">OH</option>
+                                <option value="OK">OK</option>
+                                <option value="OR">OR</option>
+                                <option value="PA">PA</option>
+                                <option value="RI">RI</option>
+                                <option value="SC">SC</option>
+                                <option value="SD">SD</option>
+                                <option value="TN">TN</option>
+                                <option value="TX">TX</option>
+                                <option value="UT">UT</option>
+                                <option value="VT">VT</option>
+                                <option value="VA">VA</option>
+                                <option value="WA">WA</option>
+                                <option value="WV">WV</option>
+                                <option value="WI">WI</option>
+                                <option value="WY">WY</option>
+                            </select>
+                        </div>
+                        <div class="col-xs-6 col-sm-3 formItem">
+                            <h3>Zip Code:</h3>
+                            <input type="text" id="Text1" class="form-control txtzip" data-validate-length="5" maxlength="5" required="required" data-message-required="Please enter zip code" />
+                        </div>
+                        <div class="clear"></div>
+                        <div class="col-xs-6 col-sm-5 formItem multi required">
+                            <h3>Phone Number:</h3>
+                            <div>
+                                <input type="text" class="form-control width-3 txtPhone1" maxlength="3" placeholder="555" /><span>-</span>
+                                <input type="text" class="form-control width-3 txtPhone2" maxlength="3" placeholder="123" /><span>-</span>
+                                <input type="text" class="form-control width-4 txtPhone3" maxlength="4" placeholder="4567" />
+
+                                <input data-validate-length-range="10" data-validate-pattern="numeric" name="serial" type="hidden" required='required' style="width: 285px" data-message-required="Please enter phone number" />
+                            </div>
+                        </div>
+
+                        <div class="clear"></div>
+                        <br />
+                        <hr />
+                        <div class="col-xs-6 col-sm-4 formItem">
+                            <h3>Employment Status:</h3>
+                            <select class="form-control required" data-bind="options: employmentStatus,
+	optionsText: 'Caption',
+	optionsValue: 'Value',
+	value: selectedEmploymentStatus,
+	optionsCaption: 'Please Select'"
+                                data-message-required="Please select employment status">
+                            </select>
+                        </div>
+                        <div class="col-xs-6 col-sm-4 formItem">
+                            <h3>Yearly Income:</h3>
+                            <select class="form-control required" data-bind="options: income,
+	optionsText: 'Caption',
+	optionsValue: 'Value',
+	value: selectedIncome,
+	optionsCaption: 'Please Select'"
+                                data-message-required="Please select yearly income">
+                            </select>
+                        </div>
+                        <div class="clear"></div>
+                        <br />
+                        <div class="col-xs-12 col-sm-4 formItem multi required">
+                            <h3>Social Security Number:</h3>
+                            <div>
+                                <input type="password" id="Password1" maxlength="3" class="form-control width-3 txtSSN1" placeholder="123" />
+                                <span>-</span>
+                                <input type="password" id="Password2" maxlength="2" class="form-control width-3 txtSSN2" placeholder="45" />
+                                <span>-</span>
+                                <input type="text" id="Text3" maxlength="4" class="form-control width-4 txtSSN3" placeholder="6789" />
+
+                                <input data-validate-length-range="9" data-validate-pattern="numeric" name="serial" type="hidden" required='required' style="width: 256px"data-message-required="Please enter SSN" />
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                        <br />
+
+
+                        <hr />
+                        <div class="col-xs-6 col-sm-4 formItem">
+                            <h3>Email Address:</h3>
+                            <input type="text" class="form-control" data-validate-pattern="^\w+@@[a-zA-Z_0-9]+?\.[a-zA-Z]{2,4}$" required="required" name="email" data-message-required="Please enter email" />
+                        </div>
+                        <div class="clear"></div>
+                        <br />
+                        <div class="col-xs-6 col-sm-4 formItem">
+                            <h3>Password:</h3>
+                            <input type="password" name="txtPwd" class="form-control" required="required" data-message-required="Please enter password" />
+                        </div>
+                        <div class="col-xs-12 col-sm-4 formItem">
+                            <h3 class="red">Confirm Password:</h3>
+                            <input type="password" name="txtRepeatPwd" class="form-control" data-validate-linked="txtPwd" required="required" data-message-required="Please confirm password" />
+                        </div>
+                        <div class="clear"></div>
+                        <br />
+
+                        <div class="col-xs-12 col-sm-9">
+                            Clicking the box below constitutes your electronic signature to:
+                    <div class="checkbox formItem">
+                        <label>
+                            <input type="checkbox" value="" required="required" name="terms" data-message-required="Please accept our terms" />
+                            the <a href="#">Credit Report Authorization</a> & <a href="#">Terms of Use</a> and for Prosper to verify your income.
+                        </label>
+                    </div>
+                        </div>
+                        <div class="clear"></div>
+                        <div class="rate_btn">
+
+
+                            <a type="button" class="col-sm-10" href="borrow_three.html" data-bind="click: getRate">
+                                <img src="@Url.Content("~/Content/images/application/rate-btn.png")" /></a>
+                        </div>
+                        <div class="col-xs-12 col-sm-7">
+                            <div class="checking_content">
+
+                                <img src="@Url.Content("~/Content/images/application/credit-score.png")" /><span class="red">Checking your rate will not affect your credit score</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /ko -->
+
+					<!-- ko template: { if: cRating() == 1, afterRender: initValidation } -->
+                    <div>
+                        <div class="col-xs-12 col-sm-5 formItem">
+                            <h3>First name:</h3>
+                            <input type="text" class="form-control" required="required" name="firstName" data-message-required="Please enter first name" />
+                        </div>
+                        <div class="col-xs-12 col-sm-5 formItem">
+                            <h3>Last name:</h3>
+                            <input type="text" class="form-control" required="required" name="lastName" data-message-required="Please enter last name" />
+                        </div>
+                        <div class="clear"></div>
+
+                        <div class="col-xs-12 col-sm-5 formItem">
+                            <h3>Address:</h3>
+                            <input type="text" class="form-control" required="required" name="address" data-message-required="Please enter address" />
+                        </div>
+                        <div class="clear"></div>
+                        <div class="col-xs-12 col-sm-5 formItem">
+                            <h3>City:</h3>
+                            <input type="text" class="form-control" required="required" name="city" data-message-required="Please enter first city" />
+                        </div>
+                        <div class="col-xs-6 col-sm-2 formItem">
+                            <h3>State:</h3>
+                            <select class="form-control required" name="state" data-message-required="Please select state">
+                                <option value="">Select</option>
+                                <option value="AL">AL</option>
+                                <option value="AK">AK</option>
+                                <option value="AZ">AZ</option>
+                                <option value="AR">AR</option>
+                                <option value="CA">CA</option>
+                                <option value="CO">CO</option>
+                                <option value="CT">CT</option>
+                                <option value="DE">DE</option>
+                                <option value="DC">DC</option>
+                                <option value="FL">FL</option>
+                                <option value="GA">GA</option>
+                                <option value="HI">HI</option>
+                                <option value="ID">ID</option>
+                                <option value="IL">IL</option>
+                                <option value="IN">IN</option>
+                                <option value="IA">IA</option>
+                                <option value="KS">KS</option>
+                                <option value="KY">KY</option>
+                                <option value="LA">LA</option>
+                                <option value="ME">ME</option>
+                                <option value="MD">MD</option>
+                                <option value="MA">MA</option>
+                                <option value="MI">MI</option>
+                                <option value="MN">MN</option>
+                                <option value="MS">MS</option>
+                                <option value="MO">MO</option>
+                                <option value="MT">MT</option>
+                                <option value="NE">NE</option>
+                                <option value="NV">NV</option>
+                                <option value="NH">NH</option>
+                                <option value="NJ">NJ</option>
+                                <option value="NM">NM</option>
+                                <option value="NY">NY</option>
+                                <option value="NC">NC</option>
+                                <option value="ND">ND</option>
+                                <option value="OH">OH</option>
+                                <option value="OK">OK</option>
+                                <option value="OR">OR</option>
+                                <option value="PA">PA</option>
+                                <option value="RI">RI</option>
+                                <option value="SC">SC</option>
+                                <option value="SD">SD</option>
+                                <option value="TN">TN</option>
+                                <option value="TX">TX</option>
+                                <option value="UT">UT</option>
+                                <option value="VT">VT</option>
+                                <option value="VA">VA</option>
+                                <option value="WA">WA</option>
+                                <option value="WV">WV</option>
+                                <option value="WI">WI</option>
+                                <option value="WY">WY</option>
+                            </select>
+                        </div>
+                        <div class="col-xs-6 col-sm-3 formItem">
+                            <h3>Zip Code:</h3>
+                            <input type="text" id="Text4" class="form-control" data-validate-length="5" maxlength="5" required="required" data-message-required="Please enter zip code" />
+                        </div>
+                        <div class="clear"></div>
+                        <div class="col-xs-12 col-sm-5 formItem multi required">
+                            <h3>Phone Number:</h3>
+                            <div>
+                                <input type="text" class="form-control width-3 txtPhone1" maxlength="3" placeholder="555" /><span>-</span>
+                                <input type="text" class="form-control width-3 txtPhone2" maxlength="3" placeholder="123" /><span>-</span>
+                                <input type="text" class="form-control width-4 txtPhone3" maxlength="4" placeholder="4567" />
+
+                                <input data-validate-length-range="10" data-validate-pattern="numeric" name="serial" type="hidden" required='required' style="width: 285px" data-message-required="Please enter phone number" />
+                            </div>
+                        </div>
+                        <div class="col-xs-6 col-sm-6 formItem multi required">
+                            <h3>Work Phone Number:</h3>
+                            <div>
+                                <input type="text" class="form-control width-3 txtPhone1" maxlength="3" placeholder="555" /><span>-</span>
+                                <input type="text" class="form-control width-3 txtPhone2" maxlength="3" placeholder="123" /><span>-</span>
+                                <input type="text" class="form-control width-4 txtPhone3" maxlength="4" placeholder="4567" />
+
+                                <input data-validate-length-range="10" data-validate-pattern="numeric" name="serial" type="hidden" required='required' style="width: 285px" data-message-required="Please enter phone number" />
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                        <br />
+                        <hr />
+                        <div class="col-xs-6 col-sm-4 formItem">
+                            <h3>Employment Status:</h3>
+                            <select class="form-control required" data-bind="options: employmentStatus,
+	optionsText: 'Caption',
+	optionsValue: 'Value',
+	value: selectedEmploymentStatus,
+	optionsCaption: 'Please Select'"
+                                data-message-required="Please select employment status">
+                            </select>
+                        </div>
+                        <div class="col-xs-6 col-sm-4 formItem">
+                            <h3>Yearly Income:</h3>
+                            <select class="form-control required" data-bind="options: income,
+	optionsText: 'Caption',
+	optionsValue: 'Value',
+	value: selectedIncome,
+	optionsCaption: 'Please Select'"
+                                data-message-required="Please select yearly income">
+                            </select>
+                        </div>
+                        <div class="clear"></div>
+                        <br />
+                        <div class="col-xs-12 col-sm-4 formItem multi required">
+                            <h3>Social Security Number:</h3>
+                            <div>
+                                <input type="password" id="Password3" maxlength="3" class="form-control width-3 txtSSN1" placeholder="123" />
+                                <span>-</span>
+                                <input type="password" id="Password4" maxlength="2" class="form-control width-3 txtSSN2" placeholder="45" />
+                                <span>-</span>
+                                <input type="text" id="Text5" maxlength="4" class="form-control width-4 txtSSN3" placeholder="6789" />
+
+                                <input data-validate-length-range="9" data-validate-pattern="numeric" name="serial" type="hidden" required='required' style="width: 256px"data-message-required="Please enter SSN" />
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                        <br />
+
+                        <div class="col-xs-12 col-sm-4 formItem">
+                            <h3>Job Title:</h3>
+                            <input type="text" class="form-control" required="required" name="firstName" data-message-required="Please enter first name" />
+                        </div>
+                        <div class="col-xs-12 col-sm-4 formItem">
+                            <h3>Time on the Job:</h3>
+                            <select class="form-control required" data-message-required="Please select yearly income">
+								<option value="">Please Select</option>
+								<option value="1">&lt;= 1 year </option>
+								<option value="2">2 years</option>
+								<option value="3">3 years</option>
+								<option value="4">4 years</option>
+								<option value="5">5 yaers</option>
+								<option value="6">&gt; 5 years</option>
+                            </select>
+                        </div>
+                        <div class="clear"></div>
+                        <br />
+
+                        <div class="col-xs-12 col-sm-4 formItem">
+                            <h3>Residence:</h3>
+                            <select class="form-control required selResidence" data-message-required="Please select residence">
+								<option value="Owned">Owned</option>
+								<option value="Rented">Rented</option>
+								<option value="Others">Others</option>
+                            </select>
+                        </div>
+                        <div class="col-xs-12 col-sm-4 formItem">
+                            <h3>Monthly Mortgage Payment:</h3>
+                            <input type="text" class="form-control txtMortgage" required="required" data-message-required="Please enter monthly mortgage payment" />
+                        </div>                        
+                        <div class="clear"></div>
+                        <br />
+
+                        <div class="col-xs-12 col-sm-4 formItem">
+                            <h3>How long have you lived there:</h3>
+                            <select class="form-control required" data-message-required="Please select how long have you lived there">
+								<option value="">Please Select</option>
+								<option value="1">Less than two years</option>
+								<option value="2">Between 2 and 5 years</option>
+								<option value="5">More than 5 yaers</option>
+								<option value="6">&gt; 5 years</option>
+                            </select>
+                        </div>
+                        <div class="clear"></div>
+                        <br />
+
+                        <br />
+                        <div class="col-xs-12 col-sm-12">
+                            <div class="MoreInfo_cont_left">
+                                Do you have a checking account?:
+                            </div>
+                            <div class="MoreInfo_cont_right">
+                                <div class="col-xs-12 col-sm-6">
+                                    <label class="radio-inline">
+                                        <input type="radio" name="inlineRadioOptions" id="Radio3" value="option1">
+                                        Yes
+                                    </label>
+
+                                    <label class="radio-inline">
+                                        <input type="radio" name="inlineRadioOptions" id="Radio4" value="option2">
+                                        No
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                        <div class="col-xs-12 col-sm-12">
+                            <div class="MoreInfo_cont_left">
+                                Do you have any additional savings?:
+                            </div>
+                            <div class="MoreInfo_cont_right">
+                                <div class="col-xs-12 col-sm-12">
+                                    <label class="radio-inline">
+                                        <input type="radio" name="inlineRadioOptions" id="Radio5" value="option1">
+                                        Yes
+                                    </label>
+
+                                    <label class="radio-inline">
+                                        <input type="radio" name="inlineRadioOptions" id="Radio6" value="option2">
+                                        No
+                                    </label>
+                                    <br />
+                                    <p>If yes, please indicate the approximate about below.</p>
+                                    <div class="MoreInfo_cont_right_poor">
+                                        <div class="col-xs-12 col-sm-3">
+                                            <span class="dark_grey">Savings:</span>
+                                            <input type="text" class="form-control currency" data-bind="value: Savings.formatted" />
+                                        </div>
+                                        <div class="col-xs-12 col-sm-3">
+                                            <span class="dark_grey">Retirement:</span>
+                                            <input type="text" class="form-control currency" data-bind="value: Retirement.formatted" />
+                                        </div>
+                                        <div class="col-xs-12 col-sm-3">
+                                            <span class="dark_grey">Other:</span>
+                                            <input type="text" class="form-control currency" data-bind="value: Other.formatted" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="clear"></div>
+                        <br />
+
+                        <hr />
+                        <div class="col-xs-6 col-sm-4 formItem">
+                            <h3>Email Address:</h3>
+                            <input type="text" class="form-control" data-validate-pattern="^\w+@@[a-zA-Z_0-9]+?\.[a-zA-Z]{2,4}$" required="required" name="email" data-message-required="Please enter email" />
+                        </div>
+                        <div class="clear"></div>
+                        <br />
+                        <div class="col-xs-6 col-sm-4 formItem">
+                            <h3>Password:</h3>
+                            <input type="password" name="txtPwd" class="form-control" required="required" data-message-required="Please enter password" />
+                        </div>
+                        <div class="col-xs-12 col-sm-4 formItem">
+                            <h3>Confirm Password:</h3>
+                            <input type="password" name="txtRepeatPwd" class="form-control" data-validate-linked="txtPwd" required="required" data-message-required="Please confirm password" />
+                        </div>
+                        <div class="clear"></div>
+                        <br />
+                        <div class="col-xs-12 col-sm-9">
+                            Clicking the box below constitutes your electronic signature to:
+                    <div class="checkbox formItem">
+                        <label>
+                            <input type="checkbox" value="" required="required" name="terms" data-message-required="Please accept our terms" />
+                            the <a href="#">Credit Report Authorization</a> & <a href="#">Terms of Use</a> and for Prosper to verify your income.
+                        </label>
+                    </div>
+                        </div>
+                        <div class="clear"></div>
+                        <div class="rate_btn">
+
+
+                            <a type="button" class="col-sm-10" href="borrow_three.html" data-bind="click: getRate">
+                                <img src="@Url.Content("~/Content/images/application/rate-btn.png")" /></a>
+                        </div>
+                        <div class="col-xs-12 col-sm-7">
+                            <div class="checking_content">
+
+                                <img src="@Url.Content("~/Content/images/application/credit-score.png")" /><span class="red">Checking your rate will not affect your credit score</span>
+                            </div>
+                        </div>
+
+
+                    </div>
+					<!-- /ko -->
+                </div>
+                <div class="application_content_right">
+                    <div class="chat_body">
+                        <div class="chat_body_head">Questions?</div>
+                        <div class="chat_body_cont">
+                            <div>
+                                <img src="@Url.Content("~/Content/images/application/chat-no.png")" class="float_left" />
+                                <h3>(866) 213-6633</h3>
+                                <p>6am to 6pm PT</p>
+                                <hr />
+                                <img src="@Url.Content("~/Content/images/application/chat-icon.png")" class="float_left" />
+                                <a href="#">
+                                    <img src="@Url.Content("~/Content/images/application/chat-btn.png")" /></a>
+                            </div>
+
+
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                    <br />
+                    <br />
+                    <div class="banks_risk_rates_approval">
+                        <img src="@Url.Content("~/Content/images/application/no-banks.png")" />
+                        <img src="@Url.Content("~/Content/images/application/no-risk.png")" />
+                        <img src="@Url.Content("~/Content/images/application/fair-rates.png")" />
+                        <img src="@Url.Content("~/Content/images/application/fast-approval.png")" />
+
+                    </div>
+
+                    <div class="clear"></div>
+                    <br />
+                    <br />
+                    <a href="#">
+                        <img src="@Url.Content("~/Content/images/application/credit-lending.png")" class="credit_lending" /></a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="notif_result">
+        <!-- ko if: rateNotif() == "denied" -->
+        <!------------ Application Unable --------------->
+        <div class="container">
+            <div class="application_bg_com">
+                <div class="unable_text">
+                    <h2>
+                        <img src="@Url.Content("~/Content/images/unable-icon.png")" />
+                        UNABLE TO FIND A QUALIFYING RATE</h2>
+                    <p>
+                        This may be because the information entered above does not completely match the Loanz
+approval criteria. Due to privacy concerns, we are unable to provide exact detail.
+However, you are more than welcome to try again using a lower loan amount.
+                    </p>
+
+                </div>
+
+            </div>
+        </div>
+        <!-- /ko -->
+        <!-- ko if: rateNotif() == "more_info" -->
+        <!------------ Application More Info--------------->
+        <div class="container">
+            <div class="application_bg_com">
+                <div class="unable_text">
+                    <h2>
+                        <img src="@Url.Content("~/Content/images/unable-icon.png")" />
+                        NEARLY THERE</h2>
+                    <p>
+                        We are close to qualifying your rate, but would like to ask a few more questions to better
+understand your circumstances. The more ifnormation we can learn about you, the lower
+the rate we can find, as well as the greater the chance of you being funded by our investors.
+                    </p>
+                    <hr />
+                    <p>Can you please provide the following work and bank information:</p>
+                    <div class="MoreInfo_cont">
+                        <div class="MoreInfo_cont_left">
+                            Job Title:
+                        </div>
+                        <div class="MoreInfo_cont_right">
+                            <div class="col-xs-12 col-sm-6">
+                                <input type="text" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                        <div class="MoreInfo_cont_left">
+                            Time on the Job: 
+                        </div>
+                        <div class="MoreInfo_cont_right">
+                            <div class="col-xs-6 col-sm-4">
+
+                                <select class="form-control">
+                                <option value="">Please Select</option>
+									<option value="1">&lt;= 1 year </option>
+									<option value="2">2 years</option>
+									<option value="3">3 years</option>
+									<option value="4">4 years</option>
+									<option value="5">5 yaers</option>
+									<option value="6">&gt; 5 years</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+
+                        <div class="MoreInfo_cont_left">
+                            Residence: 
+                        </div>
+                        <div class="MoreInfo_cont_right">
+                            <div class="col-xs-6 col-sm-4">
+                                <select class="form-control required selResidence" data-message-required="Please select residence">
+								    <option value="Owned">Owned</option>
+								    <option value="Rented">Rented</option>
+								    <option value="Others">Others</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+
+                        <div class="MoreInfo_cont_left">
+                            Monthly Mortgage Payment:
+                        </div>
+                        <div class="MoreInfo_cont_right">
+                            <div class="col-xs-12 col-sm-6">
+                                <input type="text" class="form-control txtMortgage" />
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+
+                        <div class="MoreInfo_cont_left">
+                            How long have you lived there: 
+                        </div>
+                        <div class="MoreInfo_cont_right">
+                            <div class="col-xs-6 col-sm-4">
+                                <select class="form-control required" data-message-required="Please select how long have you lived there">
+								    <option value="">Please Select</option>
+								    <option value="1">Less than two years</option>
+								    <option value="2">Between 2 and 5 years</option>
+								    <option value="5">More than 5 yaers</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                        
+                        <div class="MoreInfo_cont_left">
+                            Work Phone Number:
+                        </div>
+                        <div class="MoreInfo_cont_right">
+                            <div class="col-xs-12 col-sm-4">
+                                <input type="text" class="form-control" id="Text2" name="txtPhonenumber" placeholder="123-456-7890">
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                        <div class="MoreInfo_cont_left">
+                            Do you have a checking account?:
+                        </div>
+                        <div class="MoreInfo_cont_right">
+                            <div class="col-xs-12 col-sm-4">
+                                <label class="radio-inline">
+                                    <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                                    Yes
+                                </label>
+
+                                <label class="radio-inline">
+                                    <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                                    No
+                                </label>
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                        <div class="MoreInfo_cont_left">
+                            Do you have any additional savings?:
+                        </div>
+                        <div class="MoreInfo_cont_right">
+                            <div class="col-xs-12 col-sm-12">
+                                <label class="radio-inline">
+                                    <input type="radio" name="inlineRadioOptions" id="Radio1" value="option1">
+                                    Yes
+                                </label>
+
+                                <label class="radio-inline">
+                                    <input type="radio" name="inlineRadioOptions" id="Radio2" value="option2">
+                                    No
+                                </label>
+                                <br />
+                                <p>If yes, please indicate the approximate about below.</p>
+
+                            </div>
+                        </div>
+                        <div class="MoreInfo_cont_right">
+                            <div class="col-xs-12 col-sm-3">
+                                <span class="dark_grey">Savings:</span>
+                                <input type="text" class="form-control currency" data-bind="value: Savings.formatted" />
+                            </div>
+                            <div class="col-xs-12 col-sm-3">
+                                <span class="dark_grey">Retirement:</span>
+                                <input type="text" class="form-control currency" data-bind="value: Retirement.formatted" />
+                            </div>
+                            <div class="col-xs-12 col-sm-3">
+                                <span class="dark_grey">Other:</span>
+                                <input type="text" class="form-control currency" data-bind="value: Other.formatted" />
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+
+                        <div class="MoreInfo_cont_right">
+                            <div class=" col-sm-5 ">
+                                <h3></h3>
+
+                                <a type="button" class="btn btn-info col-xs-12" href="borrow_three.html">Submit</a>
+                            </div>
+                        </div>
+
+
+                        <div class="clear"></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!-- /ko -->
+        <!-- ko if: rateNotif() == "congratulations" -->
+        <!------------ Application Congratulations--------------->
+        <div class="container">
+            <div class="application_bg_com">
+                <div class="unable_text">
+                    <h2>
+                        <img src="@Url.Content("~/Content/images/unable-icon.png")" />
+                        CONGRATULATIONS</h2>
+                    <h3>Your loan has been qualified based on the information above.</h3>
+
+                    <p class="white_bg">
+                        You will notice that the rate has changed slightly from the original estimate. This can be for a number of reasons. If you are happy with this new rate, click CONFIRM to complete the loan application.
+                    </p>
+
+                    <hr />
+                    <p>Can you please provide the following work and bank information:</p>
+                    <div class="Cong_cont">
+                        <div class="Cong_cont_left">
+                            <p>Amount</p>
+                            <h2 data-bind="text: '$' + PV.toDigit()">$35,000</h2>
+                        </div>
+                        <div class="Cong_cont_right">
+                            <div class="Cong_cont_right_top">
+                                <div class="cong_payment">
+
+                                    <div class="cong_payment_top">Monthly Payment</div>
+                                    <div class="cong_payment_bot" data-bind="text: '$' + emi.toDigit()">$1,198.38</div>
+                                </div>
+                                <div class="cong_payment">
+
+                                    <div class="cong_payment_top">Principal</div>
+                                    <div class="cong_payment_bot" data-bind="text: '$' + PV.toDigit()">$1,198.38</div>
+                                </div>
+                                <div class="cong_payment">
+
+                                    <div class="cong_payment_top">
+                                        Interest
+                                    </div>
+                                    <div class="cong_payment_bot" data-bind="text: '$' + (FV() - PV()).toString().toDigit()">$1,198.38</div>
+                                </div>
+                                <div class="cong_payment">
+
+                                    <div class="cong_payment_top">
+                                        Repayment Total 
+                                    </div>
+                                    <div class="cong_payment_bot" data-bind="text: '$' + FV.toDigit()">$1,198.38</div>
+                                </div>
+                                <div class="cong_payment amt_border_none">
+
+                                    <div class="cong_payment_top">APR</div>
+                                    <div class="cong_payment_bot" data-bind="text: r() + '%'">$1,198.38</div>
+                                </div>
+                                <div class="cong_payment amt_border_none">
+                                    REVISED<br />
+                                    QUOTE
+        
+                                </div>
+
+                            </div>
+                            <div class="Cong_cont_right_bot">
+
+                                <div class="cong_payment">
+
+                                    <div class="cong_payment_top">Monthly Payment</div>
+                                    <div class="cong_payment_bot" data-bind="text: '$' + emi.toDigit()">$1,198.38</div>
+                                </div>
+                                <div class="cong_payment">
+
+                                    <div class="cong_payment_top">Principal</div>
+                                    <div class="cong_payment_bot" data-bind="text: '$' + PV.toDigit()">$1,198.38</div>
+                                </div>
+                                <div class="cong_payment">
+
+                                    <div class="cong_payment_top">
+                                        Interest
+                                    </div>
+                                    <div class="cong_payment_bot" data-bind="text: '$' + (FV() - PV()).toString().toDigit()">$1,198.38</div>
+                                </div>
+                                <div class="cong_payment">
+
+                                    <div class="cong_payment_top">
+                                        Repayment Total 
+                                    </div>
+                                    <div class="cong_payment_bot" data-bind="text: '$' + FV.toDigit()">$1,198.38</div>
+                                </div>
+                                <div class="cong_payment amt_border_none">
+
+                                    <div class="cong_payment_top">APR</div>
+                                    <div class="cong_payment_bot" data-bind="text: r() + '%'">$1,198.38</div>
+                                </div>
+                                <div class="cong_payment amt_border_none">
+                                    ORIGINAL<br />
+                                    QUOTE
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="clear"></div>
+
+
+                        <div class="row">
+                            <div class="span8">
+                                <br />
+                                <br />
+                                <a class="btn primary large btn-info" data-bind="attr: { href: 'application_confirm.html?pv=' + PV() + '&cRating=' + cRating() + '&reason=' + reason() + '&t=' + t() }">CONFIRM 
+                                </a>
+                            </div>
+                        </div>
+                        <hr />
+                        <p>
+                            If you would like to try and get a lower rate, change your loan amount above and try again,
+or select to answer a few more questions that will help us further understand your credit profile.
+                        </p>
+                        <div class="row">
+                            <div class="span8">
+                                <a href="#">more details</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!-- /ko -->
+    </div>
+    <div class="clear"></div>
+    <div class="footer_border">
+        <img src="@Url.Content("~/Content/images/arrow_down_sky.png")" />
+    </div>
+    
+    @Scripts.Render("~/scripts/validator")
+
+	<div id="openModal" style="display: none;">
+		<div class="alert_popup">
+			<div class="alert_header">
+				<!-- <a href="#close" title="Close" class="close">X</a>-->
+				<img src="@Url.Content("~/Content/images/LOANZ-logo.png")" />
+			</div>
+			<div class="alert_cont">
+				<div class="center">
+					<h4>Processing...
+					</h4>
+					<h2>In a few moments you'll have a loan personalized just for you</h2>
+					<div class="clear">
+					</div>
+					<br />
+					<div id="loadingProgressBar" class="progressBar m_bot10"></div>
+					<br />
+					<br />
+				</div>
+			</div>
+		</div>
+	</div>

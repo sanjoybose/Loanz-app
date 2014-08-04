@@ -1,0 +1,546 @@
+﻿hr {
+    border-bottom: solid 1px #01b3e3 !important;
+}
+.application_navbar {
+    width: 100%;   
+    border-bottom: solid 3px #f3f1f2;
+    height: 244px;
+    margin-top: 65px;background: #01b3e3;
+}
+
+.loanz_info_body {
+    width:100%;
+    height: 212px;
+    border:solid 2px #fff;
+    -webkit-border-radius: 10px;
+-moz-border-radius: 10px;
+border-radius: 10px; background:#f4fdff;overflow:hidden;margin: 12px 0;
+}
+
+.loanz_info_top {
+        width:100%;
+        height: 28px;
+        font-size: 12px;
+        background:#00b3e3;line-height:30px; padding:5px 10px;-webkit-border-top-left-radius: 10px;
+-webkit-border-top-right-radius: 10px;
+-moz-border-radius-topleft: 10px;
+-moz-border-radius-topright: 10px;
+border-top-left-radius: 10px;
+border-top-right-radius: 10px;
+}
+
+    .loanz_info_top h2 {margin:0;color:#fff;
+    }
+
+.loanz_info_top_left {
+    width:59%; float:left;
+}
+.loanz_info_top_left .loanz_info_com{ width:146px; height: 138px; float:left; background:#fff; border:solid 1px #01b3e3; margin:1.5%;text-align:center;
+                                      -webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;}
+    .loanz_info_top_left .loanz_info_com .slider {
+        width: 90%; margin: 16px 0 27px;
+    }
+    .loanz_info_top_left .loanz_info_com .switch {
+        width: 70px;
+        height: 20px;
+        margin: 41px auto 0px;
+        font-weight: bold;
+    }
+
+.loanz_info_top_left .loanz_info_com h3{ font-size:17px; font-weight:700;
+}
+.loanz_info_top_left .loanz_info_com_head{ width:100%;float:left; background:#ebebeb;text-align:center;-webkit-border-top-left-radius: 5px;
+-webkit-border-top-right-radius: 5px;
+-moz-border-radius-topleft: 5px;
+-moz-border-radius-topright: 5px;
+border-top-left-radius: 5px;
+border-top-right-radius: 5px;
+    line-height:1.7;
+}
+
+
+.loanz_info_top_right {
+    width:41%; float:right;
+}
+.loanz_info_top_right h5{font-size: 13px;
+text-align: center;
+margin: 1px 0;
+}
+.loanz_info_top_right p{font-size: 12px;
+text-align: center;
+margin: 1px 0;
+}
+
+.loanz_info_top_right .loanz_info_payment_cont {
+    width: 98%;
+    height: 138px;
+    background: #fff;   
+    margin-top: 10px;
+    padding: 3px;-webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;border:solid 1px #01b3e3; 
+
+}
+
+.loanz_info_top_right_values {
+    text-align: right;
+}
+
+
+.loanz_info_payment_cont table {
+    width: 100%;
+}
+
+.loanz_info_payment_cont h3 {
+    margin: 0;
+    font-weight: bold;
+}
+
+    .loanz_info_payment_cont table td {
+        border-bottom: solid 1px #d8d8d8;
+        padding: 3px;        
+        font-weight: bold;
+    }
+
+
+
+
+
+  
+
+.application_content {
+    width: 100%;
+    height: auto;
+    padding: 0 0 25px 0;
+}
+
+.app_explaination {
+    font-size: 15px;
+    margin_top: 10px;
+}
+
+.application_content_top, .application_content_bot {
+    width: 100%;
+    border-bottom: solid 1px #ebebeb;
+    float: left;
+}
+.application_content_top h1 {
+    margin:5px 0;
+}
+
+.application_content_left {
+width: 78%;
+float: left;
+border-right: solid 1px #01b3e3;
+padding-right: 20px;
+}
+
+    .application_content_left .col-sm-5 {
+        width: 37.66666666666667%;
+    }
+
+    .application_content_left .col-sm-3 {
+        width: 21%;
+    }
+    .width-3 {
+width: 24%;
+display: inline-block;
+}
+    .width-4 {
+width: 41%;
+display: inline-block;
+}
+.application_content_bot .col-sm-4 {
+    width: 26.66666666666667%;
+}
+
+.application_content_left .form-control, .application_content_bot .form-control {
+    border-radius: 3px;
+    height: 30px;
+}
+
+.application_content_left h3, .application_content_bot h3 {
+    margin: 10px 5px 5px 5px;
+}
+
+.application_content_right {
+    width: 20%;
+    float: right; 
+}
+
+    .application_content_right img {
+        float: left;
+        margin-right: 20px;
+        display:inline-block;
+        
+    }
+
+.banks_risk_rates_approval {width:100%;
+}
+.banks_risk_rates_approval img{width:100%
+}
+img.credit_lending {width:100%
+}
+.rate_btn {width: 24%;
+}
+.rate_btn a{
+padding-top: 5px;
+}
+/*--Chat--*/
+.chat_body {
+    width:100%; -webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px; border:solid 1px #00b3e3; background-color:#f4fdff;padding:5px;
+}
+.chat_body_head {width:100%; text-align:center;font-size: 24px;
+}
+.chat_body_cont {width:100%; overflow: hidden;
+}
+.chat_body_cont h3{font-size: 24px;
+margin: 10px 0;
+}
+.chat_body_cont p{font-size: 15px;
+margin: -5px 0;
+}
+/*---------------Application Page End Computer-----------------*/
+
+/*---------------Application Processed Page Start Computer-----------------*/
+.application_proc_navbar {
+    width: 100%;
+    border-top: solid 5px #0c1c2c;
+    border-bottom: none !important;
+    height: auto !important;
+    margin-top: 65px;
+    min-height: initial;
+}
+
+.application_proc_content {
+    width: 100%;
+    text-align: center;
+    min-height: 500px;
+}
+
+    .application_proc_content .container {
+        padding: 12% 0;
+    }
+
+    .application_proc_content .ammount {
+        background: #e9e9e9;
+        font-size: 25px;
+        font-weight: 600;
+        margin: auto;
+        width: 180px;
+    }
+
+
+/*---------------Application Four Page Start Computer-----------------*/
+
+/*---------------Application Unable-----------------*/
+.application_bg_com {
+    background: #f3f1f2;
+    width: 100%;
+    height: auto;
+    border-top: solid 5px #ddd7d9;
+    border-bottom: solid 5px #ddd7d9;
+    margin: auto;
+    padding: 2% 10%;
+    margin-bottom: 50px;
+}
+
+.unable_text {
+    text-align: center;
+}
+
+    .unable_text h2 {
+        font-size: 23PX;
+        vertical-align: bottom;
+        font-weight: 600;
+    }
+
+    .unable_text h3 {
+        font-size: 19PX;
+        vertical-align: bottom;
+        font-weight: 600;
+    }
+/*---------------Application More Info-----------------*/
+
+.MoreInfo_cont {
+    width: 85%;
+    margin: 0 auto;
+}
+
+.MoreInfo_cont_left {
+width: 240px;
+float: left;
+text-align: right;
+height: 35px;
+}
+
+.MoreInfo_cont_right {
+width: 535px;
+float: right;
+text-align: left;
+min-height: 35px;
+}
+
+.MoreInfo_cont_right_poor {
+width: 535px;
+float: right;
+text-align: left;
+min-height: 35px;
+padding-left: 15px;
+}
+
+    .MoreInfo_cont_right .col-sm-3 {
+        width: 32%;
+    }
+
+.MoreInfo_cont .form-control {
+    border-radius: 0px;
+    height: 30px;
+}
+
+.MoreInfo_cont_right .btn {
+    display: inline-block;
+    padding: 8px 45px;
+    margin-bottom: 0;
+    font-size: 18px;
+}
+/*---------------Application Congratulations-----------------*/
+
+.Cong_cont {
+    width: 100%;
+    margin: 0 auto;
+}
+
+.Cong_cont_left {
+    width: 120px;
+    height: 120px;
+    border: solid 5px #fff;
+    float: left;
+    padding: 12px 0;
+}
+
+    .Cong_cont_left p {
+        margin: 0;
+    }
+
+    .Cong_cont_left h2 {
+        margin: 8px 0;
+    }
+
+.Cong_cont_right {
+    width: 86%;
+    height: 120px;
+    float: left;
+}
+
+.Cong_cont_right_top {
+    width: 100%;
+    height: 60px;
+    float: left;
+    border-bottom: solid 5px #fff;
+    padding: 0 60px;
+}
+
+.Cong_cont_right_bot {
+    width: 100%;
+    height: 60px;
+    float: left;
+    padding: 0 60px;
+}
+
+    .Cong_cont_right_top .cong_payment, .Cong_cont_right_bot .cong_payment {
+        float: left;
+        margin: 0px;
+        border-right: solid 1px #fff;
+        float: left;
+        width: 110px;
+        padding: 5px 0;
+    }
+
+    .Cong_cont_right_top .cong_payment_top, .Cong_cont_right_bot .cong_payment_top {
+        width: 100%;
+        float: left;
+        text-align: center;
+        font-size: 13px;
+    }
+
+    .Cong_cont_right_top .cong_payment_bot, .Cong_cont_right_bot .cong_payment_bot {
+        width: 100%;
+        float: left;
+        text-align: center;
+        font-size: 20px;
+        font-weight: 600;
+    }
+
+.Cong_cont .btn {
+    padding: 8px 58px;
+    font-size: 18px;
+}
+
+
+
+/*---------------Application Confirm-----------------*/
+.application_confirm_content {
+    width: 70%;
+    height: auto;
+    padding: 25px 0 60px 0;
+    margin: 0 auto;
+}
+
+.application_confirm_navbar {
+    width: 100%;
+    border-top: solid 5px #0c1c2c;
+    border-bottom: none !important;
+    height: auto !important;
+    margin-top: 65px;
+    min-height: initial;
+}
+
+.bot_app_cont {
+    width: 100%;
+    background: #f3f1f2;
+    min-height: 100px;
+}
+
+    .bot_app_cont .cong_payment {
+        float: left;
+        margin: 0px;
+        border-right: solid 1px #fff;
+        float: left;
+        width: 130px;
+        padding: 5px 0;
+    }
+
+    .bot_app_cont .cong_payment_top {
+        width: 100%;
+        float: left;
+        text-align: center;
+    }
+
+    .bot_app_cont .cong_payment_bot {
+        width: 100%;
+        float: left;
+        text-align: center;
+        font-size: 22px;
+        font-weight: 600;
+    }
+
+
+.application_confirm_ammount {
+    width: 70%;
+    margin: 0 auto;
+    padding-top: 15px;
+}
+
+.bank_inf_left {
+    width: 58%;
+    float: left;
+    margin-left: 15px;
+    margin-top: 10px;
+}
+
+.bank_inf_right {
+    width: 40%;
+    float: right;
+    margin-top: 10px;
+}
+
+    .bank_inf_right p {
+        margin: 0px 0 0 26px !important;
+    }
+
+.application_confirm_content h3 {
+    font-size: 16px;
+}
+
+.application_confirm_content p {
+    margin: -15px 0 0 15px;
+}
+
+.application_confirm_content .checkbox {
+    padding-left: 36px;
+}
+
+.application_confirm_content .form-control {
+    border-radius: 0px;
+    height: 30px;
+}
+
+.bank_inf_left .row h3 {
+    margin: 5px 0;
+    font-size: 16px;
+}
+
+/*------------Dialog Content--------------*/
+.dialog_content {
+    width: 100%;
+    margin-top: 100px;
+}
+
+
+
+/*--Alert Dialog Box--*/
+
+
+.alert_popup {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #fff;
+        width: 420px;
+        height: auto;
+        position: relative;
+        padding: 0;
+        border-radius: 0px;
+        background: #f3f1f2;
+        border-top: solid 3px #ccc;
+        border-bottom: solid 3px #ccc;
+    }
+
+.alert_popup > .alert_header {
+    width: 100%;
+    /* height: 30px; */
+    background: #fff;
+    padding: 5px;
+    margin: 5px 0;
+    text-align: center;
+}
+
+    .alert_popup > .alert_header img {
+        width: 85px;
+    }
+
+.alert_popup > .alert_cont {
+    width: 100%;
+}
+
+    .alert_popup > .alert_cont > .center {
+        text-align: center;
+    }
+
+a.button {
+    background: #eaeaea;
+    padding: 10px 50px;
+    font-size: 18px;
+    border: 1px solid #d8d8d8;
+}
+
+.alert_popup .progressBar {
+    width: 80%;
+}
+
+.modalDialog .ui-dialog-titlebar { display: none !important;}
+.modalDialog , .modalDialog .ui-dialog-content { padding: 0 !important;}
+.modalDialog.ui-corner-all { border-radius: 0 !important}
+
+.close {
+    background: #bf234b;
+    color: #FFFFFF;
+    line-height: 20px;
+    position: absolute;
+    right: 10px;
+    text-align: center;
+    top: 10px;
+    width: 20px;
+    text-decoration: none;
+    font-weight: bold;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    border-radius: 0px;
+}

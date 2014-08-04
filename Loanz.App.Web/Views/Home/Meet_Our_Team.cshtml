@@ -1,0 +1,118 @@
+﻿@{
+	ViewBag.Title = "LOANZ - Real Loans from Real People";
+}
+
+@section styles{
+	@Styles.Render("~/Content/css/bootstrap")
+	@Styles.Render("~/Content/css/style")
+	@Styles.Render("~/Content/css/component")
+
+}
+
+@section scripts {
+	@Scripts.Render("~/scripts/jquery")
+	<script type="text/javascript">
+		$(document).ready(function () {
+			$('[data-toggle=offcanvas]').click(function () {
+				$('.row-offcanvas').toggleClass('active');
+			});
+		});
+	</script>
+}
+
+
+    <div class="content_com_page">
+        <div class="container">
+            <div class="com_header sky_bg">
+                <div class="com_header_left">
+                    <h3>About us</h3>
+                </div>
+
+                <div class="com_header_right">
+                    <a class="navbar-toggle navbar-toggle-left" data-toggle="offcanvas" data-target=".sidebar-nav">
+                        <img src="images/left-menu-icon.png" />
+                    </a>
+                    <h2 class="white"><b>Meet our team</b></h2>
+                </div>
+            </div>
+            <div class="clear"></div>
+            <div class="com_body">
+                <div class="com_body_left">
+                    <ul>
+                        <a href="@Url.Action("what_we_do","home")">
+                            <li>What we do
+                            </li>
+                        </a>
+                        <a href="@Url.Action("meet_our_team","home")">
+                            <li class="active">Meet our team
+                            </li>
+                        </a>
+                        <a href="#">
+                            <li>Meet our investors
+                            </li>
+                        </a>
+                        <a href="#">
+                            <li>In the press
+                            </li>
+                        </a>
+                        <a href="@Url.Action("faq","home")">
+                            <li>FAQs
+                            </li>
+                        </a>
+                        <a href="#">
+                            <li>Jobs
+                            </li>
+                        </a>
+                        <a href="#">
+                            <li>Contact Us
+                            </li>
+                        </a>
+                        <a href="#">
+                            <li>Partner with us</li>
+                        </a>
+                    </ul>
+                </div>
+
+                <!-- sidebar -->
+                <div class="row-offcanvas row-offcanvas-left">
+                    <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
+                        <ul class="nav">
+                            <h3>About us</h3>
+                            <li><a href="@Url.Action("what_we_do","home")">What we do</a></li>
+                            <li class="active"><a href="@Url.Action("meet_our_team","home")">Meet our team</a></li>
+                            <li><a href="#">Meet our investors</a></li>
+                            <li><a href="#">In the press</a></li>
+                            <li><a href="@Url.Action("faq","home")">FAQs</a></li>
+                            <li><a href="#">Jobs</a></li>
+                            <li><a href="#">Jobs</a></li>
+                            <li><a href="#">Contact Us</a></li>
+                            <li><a href="#">Partner with us</a></li>
+
+                        </ul>
+                    </div>
+                </div>
+                <div class="com_body_right">
+
+
+
+
+                    <p>
+                        With over 50 years’ experience running finance and technology companies, the LOANZ team brings a wealth of experience and expertise to the field of peer to peer lending. All our co-founders are from companies that have successfully built new markets and businesses around cutting edge technologies and services.
+                        <br />
+                        <br />
+
+                        <img src="@Url.Content("~/content/images/meet-our-team-img.png")" />
+                        <br />
+                        <br />
+
+                        Finance guy comes to LOANZ from the mortgage business where he founded one if the largest loan companies in the U.S. In 1999 he sold ?? for $340 million and then went on to found several more companies involved in stuff.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="clear"></div>
+    <div class="footer_border m_top70">
+        <img src="@Url.Content("~/content/images/arrow_down_sky.png")" />
+    </div>
