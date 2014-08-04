@@ -1,0 +1,528 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{CF94649F-1310-4C96-AE46-F5FF5CD8C3F3}</ProjectGuid>
+    <ProjectTypeGuids>{E3E379DF-F4C6-4180-9B81-6769533ABE47};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>LOANZ_APP_WEB</RootNamespace>
+    <AssemblyName>LOANZ_APP_WEB</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>false</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net40\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.4.5.6\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Net.Http.2.0.20710.0\lib\net40\System.Net.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.4.0.20710.0\lib\net40\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Net.Http.2.0.20710.0\lib\net40\System.Net.Http.WebRequest.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.4.0.20710.0\lib\net40\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.4.0.20710.0\lib\net40\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.4.0.20710.0\lib\net40\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.0.0\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.2.0.20710.0\lib\net40\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="WebMatrix.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.Data.2.0.20710.0\lib\net40\WebMatrix.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.WebPages.OAuth, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.OAuth.2.0.20710.0\lib\net40\Microsoft.Web.WebPages.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="WebMatrix.WebData, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.WebData.2.0.20710.0\lib\net40\WebMatrix.WebData.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.AspNet, Version=4.0.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\DotNetOpenAuth.AspNet.4.0.3.12153\lib\net40-full\DotNetOpenAuth.AspNet.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\DotNetOpenAuth.Core.4.0.3.12153\lib\net40-full\DotNetOpenAuth.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OAuth.Consumer, Version=4.0.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\DotNetOpenAuth.OAuth.Consumer.4.0.3.12153\lib\net40-full\DotNetOpenAuth.OAuth.Consumer.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OAuth, Version=4.0.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\DotNetOpenAuth.OAuth.Core.4.0.3.12153\lib\net40-full\DotNetOpenAuth.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OpenId, Version=4.0.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\DotNetOpenAuth.OpenId.Core.4.0.3.12153\lib\net40-full\DotNetOpenAuth.OpenId.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OpenId.RelyingParty, Version=4.0.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\DotNetOpenAuth.OpenId.RelyingParty.4.0.3.12153\lib\net40-full\DotNetOpenAuth.OpenId.RelyingParty.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.1.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.1.0\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\AuthConfig.cs" />
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\css\application-slider.css" />
+    <Content Include="Content\css\application-style.css" />
+    <Content Include="Content\css\BlueOpal\editor.png" />
+    <Content Include="Content\css\BlueOpal\imagebrowser.png" />
+    <Content Include="Content\css\BlueOpal\indeterminate.gif" />
+    <Content Include="Content\css\BlueOpal\loading-image.gif" />
+    <Content Include="Content\css\BlueOpal\loading.gif" />
+    <Content Include="Content\css\BlueOpal\loading_2x.gif" />
+    <Content Include="Content\css\BlueOpal\markers.png" />
+    <Content Include="Content\css\BlueOpal\markers_2x.png" />
+    <Content Include="Content\css\BlueOpal\slider-h.gif" />
+    <Content Include="Content\css\BlueOpal\slider-v.gif" />
+    <Content Include="Content\css\BlueOpal\sprite.png" />
+    <Content Include="Content\css\BlueOpal\sprite_2x.png" />
+    <Content Include="Content\css\bootstrap-theme.css" />
+    <Content Include="Content\css\bootstrap.css" />
+    <Content Include="Content\css\carousel.css" />
+    <Content Include="Content\css\component.css" />
+    <Content Include="Content\css\cong-fail-style.css" />
+    <Content Include="Content\css\font-awesome.css" />
+    <Content Include="Content\css\fonts\Arsenal-Regular\demo.html" />
+    <Content Include="Content\css\fonts\Arsenal-Regular\fonts.css" />
+    <Content Include="Content\css\fonts\Arsenal-Regular\fonts\Arsenal-Regular.svg" />
+    <Content Include="Content\css\fonts\dinregularwebfont\dinregularwebfont-bg.png" />
+    <Content Include="Content\css\fonts\dinregularwebfont\dinregularwebfont-thumb.png" />
+    <Content Include="Content\css\fonts\dinregularwebfont\dinregularwebfont.png" />
+    <Content Include="Content\css\fonts\dinregularwebfont\font.css" />
+    <Content Include="Content\css\fonts\dinregularwebfont\index.html" />
+    <Content Include="Content\css\fonts\dinregularwebfont\readme.txt" />
+    <Content Include="Content\css\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\css\fonts\HelveticaNeue-Light.svg" />
+    <Content Include="Content\css\fonts\HelveticaNeue-Light\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\css\fonts\HelveticaNeue-Light\HelveticaNeue-Light.svg" />
+    <Content Include="Content\css\fonts\HelveticaNeue-Light\helveticaneue-medium.svg" />
+    <Content Include="Content\css\fonts\helveticaneue-medium.svg" />
+    <Content Include="Content\css\fonts\lucida_grande\lucida_grande.svg" />
+    <Content Include="Content\css\fonts\Nexa\Nexa Light.svg" />
+    <Content Include="Content\css\fonts\SEGOEUIL\font.css" />
+    <Content Include="Content\css\fonts\SEGOEUIL\index.html" />
+    <Content Include="Content\css\fonts\SEGOEUIL\readme.txt" />
+    <Content Include="Content\css\fonts\SEGOEUIL\SEGOEUIL-bg.png" />
+    <Content Include="Content\css\fonts\SEGOEUIL\SEGOEUIL-thumb.png" />
+    <Content Include="Content\css\fonts\SEGOEUIL\SEGOEUIL.png" />
+    <Content Include="Content\css\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\css\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\css\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\css\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\css\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\css\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\css\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\css\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\css\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\css\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\css\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\css\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\css\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\css\index-slider.css" />
+    <Content Include="Content\css\index-style.css" />
+    <Content Include="Content\css\ion.rangeSlider.css" />
+    <Content Include="Content\css\ion.rangeSlider.skinFlat.css" />
+    <Content Include="Content\css\jquery-ui.css" />
+    <Content Include="Content\css\jquery-ui.theme.css" />
+    <Content Include="Content\css\kendo.blueopal.css" />
+    <Content Include="Content\css\kendo.common.css" />
+    <Content Include="Content\css\kendo.dataviz.blueopal.css" />
+    <Content Include="Content\css\kendo.dataviz.css" />
+    <Content Include="Content\css\normalize.css" />
+    <Content Include="Content\css\slick.css" />
+    <Content Include="Content\css\slider.css" />
+    <Content Include="Content\css\Style.css" />
+    <Content Include="Content\css\Style2.css" />
+    <Content Include="Content\css\textures\brushed-metal.png" />
+    <Content Include="Content\css\textures\dots1.png" />
+    <Content Include="Content\css\textures\dots10.png" />
+    <Content Include="Content\css\textures\dots11.png" />
+    <Content Include="Content\css\textures\dots12.png" />
+    <Content Include="Content\css\textures\dots13.png" />
+    <Content Include="Content\css\textures\dots2.png" />
+    <Content Include="Content\css\textures\dots3.png" />
+    <Content Include="Content\css\textures\dots4.png" />
+    <Content Include="Content\css\textures\dots5.png" />
+    <Content Include="Content\css\textures\dots6.png" />
+    <Content Include="Content\css\textures\dots7.png" />
+    <Content Include="Content\css\textures\dots8.png" />
+    <Content Include="Content\css\textures\dots9.png" />
+    <Content Include="Content\css\textures\glass-lighter.png" />
+    <Content Include="Content\css\textures\glass.png" />
+    <Content Include="Content\css\textures\highlight.png" />
+    <Content Include="Content\css\textures\hsv-gradient.png" />
+    <Content Include="Content\css\textures\hue.png" />
+    <Content Include="Content\css\textures\leather1.png" />
+    <Content Include="Content\css\textures\leather2.png" />
+    <Content Include="Content\css\textures\noise.png" />
+    <Content Include="Content\css\textures\stripe1.png" />
+    <Content Include="Content\css\textures\stripe2.png" />
+    <Content Include="Content\css\textures\stripe3.png" />
+    <Content Include="Content\css\textures\stripe4.png" />
+    <Content Include="Content\css\textures\stripe5.png" />
+    <Content Include="Content\css\textures\stripe6.png" />
+    <Content Include="Content\css\textures\transparency.png" />
+    <Content Include="Content\css\textures\transtexture.png" />
+    <Content Include="Content\css\toggles.css" />
+    <Content Include="Content\css\validator.css" />
+    <Content Include="Content\images\1more.png" />
+    <Content Include="Content\images\2more.png" />
+    <Content Include="Content\images\application\chat-btn.png" />
+    <Content Include="Content\images\application\chat-icon.png" />
+    <Content Include="Content\images\application\chat-no.png" />
+    <Content Include="Content\images\application\credit-lending.png" />
+    <Content Include="Content\images\application\credit-score.png" />
+    <Content Include="Content\images\application\fair-rates.png" />
+    <Content Include="Content\images\application\fast-approval.png" />
+    <Content Include="Content\images\application\no-banks.png" />
+    <Content Include="Content\images\application\no-risk.png" />
+    <Content Include="Content\images\application\rate-btn.png" />
+    <Content Include="Content\images\app_arrow_left.png" />
+    <Content Include="Content\images\app_lock_right.png" />
+    <Content Include="Content\images\arrow_down_grey.png" />
+    <Content Include="Content\images\arrow_down_sky.png" />
+    <Content Include="Content\images\arrow_down_white.png" />
+    <Content Include="Content\images\black-icon.png" />
+    <Content Include="Content\images\blank-icon-two.png" />
+    <Content Include="Content\images\borrow-cash-icon.png" />
+    <Content Include="Content\images\borrow-cost-icon.png" />
+    <Content Include="Content\images\borrow-growth-icon.png" />
+    <Content Include="Content\images\borrow-medical-icon.png" />
+    <Content Include="Content\images\borrow-pie-icon.png" />
+    <Content Include="Content\images\borrow-show-return-icon.png" />
+    <Content Include="Content\images\button-next-app.png" />
+    <Content Include="Content\images\button-next.png" />
+    <Content Include="Content\images\button-next1.png" />
+    <Content Include="Content\images\button-previous-app.png" />
+    <Content Include="Content\images\button-previous.png" />
+    <Content Include="Content\images\button-previous1.png" />
+    <Content Include="Content\images\cash-icon-two.png" />
+    <Content Include="Content\images\cash-icon.png" />
+    <Content Include="Content\images\chat-bg.png" />
+    <Content Include="Content\images\chat-icon.png" />
+    <Content Include="Content\images\checking_icon.png" />
+    <Content Include="Content\images\congrats.png" />
+    <Content Include="Content\images\congratulation\congratulation_nav.png" />
+    <Content Include="Content\images\debt-icon-two.png" />
+    <Content Include="Content\images\debt-icon.png" />
+    <Content Include="Content\images\def-item-hover.png" />
+    <Content Include="Content\images\equal-housing-lender.png" />
+    <Content Include="Content\images\fico_score.png" />
+    <Content Include="Content\images\footer_link_1.png" />
+    <Content Include="Content\images\footer_link_2.png" />
+    <Content Include="Content\images\footer_link_3.png" />
+    <Content Include="Content\images\footer_link_4.png" />
+    <Content Include="Content\images\footer_link_5.png" />
+    <Content Include="Content\images\get-Loan.png" />
+    <Content Include="Content\images\index\apply_now_btn.png" />
+    <Content Include="Content\images\index\Just-Number.png" />
+    <Content Include="Content\images\index\LOANZ-Consumer-Homepage.jpg" />
+    <Content Include="Content\images\index\Private-Credit.png" />
+    <Content Include="Content\images\index\Rate-BG.png" />
+    <Content Include="Content\images\index\Safe-Secure.png" />
+    <Content Include="Content\images\index\TopNav_panel_BG.png" />
+    <Content Include="Content\images\index\Your-Rate-BG.png" />
+    <Content Include="Content\images\invest-img.png" />
+    <Content Include="Content\images\iphone-img.png" />
+    <Content Include="Content\images\learn-more.png" />
+    <Content Include="Content\images\left-menu-icon.png" />
+    <Content Include="Content\images\LOANZ-logo-footer.png" />
+    <Content Include="Content\images\LOANZ-logo-footer2.png" />
+    <Content Include="Content\images\LOANZ-logo.png" />
+    <Content Include="Content\images\LOANZ-logo1.jpg" />
+    <Content Include="Content\images\Loanz_app.png" />
+    <Content Include="Content\images\Loanz_QR.png" />
+    <Content Include="Content\images\make-money.png" />
+    <Content Include="Content\images\meet-our-team-img.png" />
+    <Content Include="Content\images\men-face-icon.png" />
+    <Content Include="Content\images\more-no-icon.png" />
+    <Content Include="Content\images\peer-icon.png" />
+    <Content Include="Content\images\peer_to_peer_network.png" />
+    <Content Include="Content\images\privacy-protected.png" />
+    <Content Include="Content\images\question-icon.png" />
+    <Content Include="Content\images\real-estate-icon-two.png" />
+    <Content Include="Content\images\real-estate-icon.png" />
+    <Content Include="Content\images\safe-icon.png" />
+    <Content Include="Content\images\safe-secure-icon.png" />
+    <Content Include="Content\images\safe_secure.png" />
+    <Content Include="Content\images\secured_by_thawte.png" />
+    <Content Include="Content\images\Security-icon.png" />
+    <Content Include="Content\images\small-business-icon-two.png" />
+    <Content Include="Content\images\small-business-icon.png" />
+    <Content Include="Content\images\submit_btn.png" />
+    <Content Include="Content\images\top_banner_img.png" />
+    <Content Include="Content\images\trust-e-certified.png" />
+    <Content Include="Content\images\unable-icon.png" />
+    <Content Include="Content\images\vacation-icon-two.png" />
+    <Content Include="Content\images\vacation-icon.png" />
+    <Content Include="Content\images\whatwedo-body-img.png" />
+    <Content Include="Content\images\your-bank-sample.png" />
+    <Content Include="favicon.ico" />
+    <Content Include="Global.asax" />
+    <Content Include="Scripts\bootstrap-tooltip.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\charts\drilldown.js" />
+    <Content Include="Scripts\charts\highchart-knockout.js" />
+    <Content Include="Scripts\charts\highcharts-3d.js" />
+    <Content Include="Scripts\charts\highcharts-3d.src.js" />
+    <Content Include="Scripts\charts\highcharts-all.js" />
+    <Content Include="Scripts\charts\highcharts-more.js" />
+    <Content Include="Scripts\charts\highcharts-more.src.js" />
+    <Content Include="Scripts\charts\highcharts.js" />
+    <Content Include="Scripts\charts\highcharts.src.js" />
+    <Content Include="Scripts\charts\initCharts.js" />
+    <Content Include="Scripts\ion.rangeSlider.min.js" />
+    <Content Include="Scripts\jquery-1.11.0.js" />
+    <Content Include="Scripts\jquery-migrate-1.2.1.min.js" />
+    <Content Include="Scripts\jquery-ui.js" />
+    <Content Include="Scripts\jquery.flexisel.js" />
+    <Content Include="Scripts\jquery.maskedinput.js" />
+    <Content Include="Scripts\jquery.maskMoney.js" />
+    <Content Include="Scripts\jquery.watermark.js" />
+    <Content Include="Scripts\kendo.all.js" />
+    <Content Include="Scripts\kendo.slider.js" />
+    <Content Include="Scripts\knockout-3.1.0.js" />
+    <Content Include="Scripts\knockout-kendo.js" />
+    <Content Include="Scripts\knockout.mapping-2.4.1.js" />
+    <Content Include="Scripts\multifield.js" />
+    <Content Include="Scripts\purl.js" />
+    <Content Include="Scripts\slick.js" />
+    <Content Include="Scripts\toggles.js" />
+    <Content Include="Scripts\validator.js" />
+    <Content Include="Scripts\vm_Loan.js" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Images\accent.png" />
+    <Content Include="Images\bullet.png" />
+    <Content Include="Images\heroAccent.png" />
+    <Content Include="Images\orderedList0.png" />
+    <Content Include="Images\orderedList1.png" />
+    <Content Include="Images\orderedList2.png" />
+    <Content Include="Images\orderedList3.png" />
+    <Content Include="Images\orderedList4.png" />
+    <Content Include="Images\orderedList5.png" />
+    <Content Include="Images\orderedList6.png" />
+    <Content Include="Images\orderedList7.png" />
+    <Content Include="Images\orderedList8.png" />
+    <Content Include="Images\orderedList9.png" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Content\css\fonts\Arsenal-Regular\Arsenal-Bold.otf" />
+    <None Include="Content\css\fonts\Arsenal-Regular\Arsenal-BoldItalic.otf" />
+    <None Include="Content\css\fonts\Arsenal-Regular\Arsenal-Italic.otf" />
+    <None Include="Content\css\fonts\Arsenal-Regular\Arsenal-Regular.otf" />
+    <None Include="Content\css\fonts\Arsenal-Regular\fonts\Arsenal-Regular.eot" />
+    <None Include="Content\css\fonts\Arsenal-Regular\fonts\Arsenal-Regular.ttf" />
+    <None Include="Content\css\fonts\Arsenal-Regular\fonts\Arsenal-Regular.woff" />
+    <None Include="Content\css\fonts\Arsenal-Regular\Free Fonts.URL" />
+    <None Include="Content\css\fonts\dinregularwebfont\dinregularwebfont.eot" />
+    <None Include="Content\css\fonts\dinregularwebfont\dinregularwebfont.ttf" />
+    <None Include="Content\css\fonts\dinregularwebfont\dinregularwebfont.woff" />
+    <None Include="Content\css\fonts\fontawesome-webfont.eot" />
+    <None Include="Content\css\fonts\fontawesome-webfont.ttf" />
+    <None Include="Content\css\fonts\fontawesome-webfont.woff" />
+    <None Include="Content\css\fonts\FontAwesome.otf" />
+    <None Include="Content\css\fonts\HelveticaNeue-Light.eot" />
+    <None Include="Content\css\fonts\HelveticaNeue-Light.ttf" />
+    <None Include="Content\css\fonts\HelveticaNeue-Light.woff" />
+    <None Include="Content\css\fonts\HelveticaNeue-Light\glyphicons-halflings-regular.eot" />
+    <None Include="Content\css\fonts\HelveticaNeue-Light\glyphicons-halflings-regular.ttf" />
+    <None Include="Content\css\fonts\HelveticaNeue-Light\glyphicons-halflings-regular.woff" />
+    <None Include="Content\css\fonts\HelveticaNeue-Light\HelveticaNeue-Light.eot" />
+    <None Include="Content\css\fonts\HelveticaNeue-Light\HelveticaNeue-Light.ttf" />
+    <None Include="Content\css\fonts\HelveticaNeue-Light\HelveticaNeue-Light.woff" />
+    <None Include="Content\css\fonts\HelveticaNeue-Light\helveticaneue-medium.eot" />
+    <None Include="Content\css\fonts\HelveticaNeue-Light\helveticaneue-medium.otf" />
+    <None Include="Content\css\fonts\HelveticaNeue-Light\helveticaneue-medium.ttf" />
+    <None Include="Content\css\fonts\HelveticaNeue-Light\helveticaneue-medium.woff" />
+    <None Include="Content\css\fonts\helveticaneue-medium.eot" />
+    <None Include="Content\css\fonts\helveticaneue-medium.otf" />
+    <None Include="Content\css\fonts\helveticaneue-medium.ttf" />
+    <None Include="Content\css\fonts\helveticaneue-medium.woff" />
+    <None Include="Content\css\fonts\lucida_grande\lucida_grande.eot" />
+    <None Include="Content\css\fonts\lucida_grande\lucida_grande.otf" />
+    <None Include="Content\css\fonts\lucida_grande\lucida_grande.ttf" />
+    <None Include="Content\css\fonts\lucida_grande\lucida_grande.woff" />
+    <None Include="Content\css\fonts\Nexa\FFF_EULA_license.pdf" />
+    <None Include="Content\css\fonts\Nexa\Nexa Bold.otf" />
+    <None Include="Content\css\fonts\Nexa\Nexa Light.eot" />
+    <None Include="Content\css\fonts\Nexa\Nexa Light.otf" />
+    <None Include="Content\css\fonts\Nexa\Nexa Light.ttf" />
+    <None Include="Content\css\fonts\Nexa\Nexa Light.woff" />
+    <None Include="Content\css\fonts\SEGOEUIL\SEGOEUIL.eot" />
+    <None Include="Content\css\fonts\SEGOEUIL\SEGOEUIL.ttf" />
+    <None Include="Content\css\fonts\SEGOEUIL\SEGOEUIL.woff" />
+    <Content Include="Views\Home\Application.cshtml" />
+    <Content Include="Views\Home\Congratulation.cshtml" />
+    <None Include="Properties\PublishProfiles\file system.pubxml" />
+    <Content Include="Views\Home\What_We_Do.cshtml" />
+    <Content Include="Views\Home\Meet_Our_Team.cshtml" />
+    <Content Include="Views\Home\Faq.cshtml" />
+    <Content Include="Views\Home\Borrow.cshtml" />
+    <Content Include="Views\Home\Lending_Statement.cshtml" />
+    <Content Include="Views\Home\Login.cshtml" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>4286</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>
+          </IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

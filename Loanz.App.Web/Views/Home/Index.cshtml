@@ -1,0 +1,237 @@
+﻿@{
+    ViewBag.Title = "LOANZ - Real Loans from Real People";
+}
+
+@section styles {
+    @Styles.Render("~/Content/css/bootstrap")
+    @Styles.Render("~/Content/css/normalize")
+    @Styles.Render("~/Content/css/index")
+    @Styles.Render("~/Content/css/kendotheme")
+}
+
+
+@section scripts {
+    @Scripts.Render("~/scripts/jquery")
+    @Scripts.Render("~/scripts/kendoslider")
+    @Scripts.Render("~/scripts/ko")
+    @Scripts.Render("~/scripts/ko-kendo")
+    @Scripts.Render("~/scripts/carousel")
+
+    <script type="text/javascript" src="@Url.Content("~/Scripts/vm_loan.js")"></script>
+
+    <script type="text/javascript">
+        var vm;
+        $(function () {
+            $("#sliderReason").flexisel({ visibleItems: 4 });
+
+            $('.nbs-flexisel-item').on('click', function (e) {
+                e.preventDefault();
+                var flag = $(this).hasClass('selected');
+                $('.nbs-flexisel-item.selected').removeClass('selected');
+                if (flag) {
+                    $(this).removeClass('selected');
+                    vm.reason('');
+                } else {
+                    $(this).addClass('selected');
+                    vm.reason($.trim($(this).attr('data-name')));
+                }
+
+            });
+
+
+            vm = new vmLoan();
+            ko.applyBindings(vm);
+        });
+    </script>
+}
+
+
+
+    <div class="top_banner_full">
+        <div class="container">
+            <div class="top_banner">
+                <div class="banner_text">
+                    <h1 class="text_one">Real Loans...</h1>
+                    <h1 class="text_two">for Real People</h1>
+                </div>
+
+                <div class="panel_body">
+                    <h1>A Loan For You!</h1>
+                    <div class="panel_com">
+                        <div class="panel_com_head">
+                            <span class="circle_white">1</span>
+                            How much do you need?
+                        </div>
+                        <div class="panel_com_cont">
+                            <input id="sliderAmount" class="slider" data-bind="kendoSlider: { value: PV, min: 0, max: 100000, smallStep: 5000, largeStep: 25000, showButtons: false, tickPlacement: 'bottomRight', tickFormat: 'K', tooltip: { autoHide: false, format: '${0}' } }" />
+                        </div>
+                    </div>
+                     <div class="panel_com">
+                        <div class="panel_com_head">
+                            <span class="circle_white">2</span>
+                            How is your credit? (FICO score)
+                        </div>
+                        <div class="panel_com_cont">
+                            <input id="sliderCredit" class="slider" data-bind="kendoSlider: { value: cRating, min: 1, max: 4, smallStep: 1, largeStep: 1, showButtons: false, tickPlacement: 'bottomRight', tickLabels: ['Poor', 'Fair', 'Good', 'Excellent'], tooltip: { enabled: false } }" />
+							<br />
+							<div class="k-label-nextline-cont">
+								<span class="k-label-first"><640</span><span class="k-label-second">640+</span><span class="k-label-third">700+</span><span class="k-label-last">760+</span>
+							</div>
+                        </div>
+                    </div>
+
+                     <div class="panel_com">
+                        <div class="panel_com_head">
+                            <span class="circle_white">3</span>
+                            What is it for? 
+                        </div>
+                        <div class="panel_com_cont_slider">
+							<ul id="sliderReason">
+								<li data-name="Vacation">
+									<a>
+										<img src="@Url.Content("~/content/images/vacation-icon.png")" />
+									</a>
+								</li>
+								<li data-name="Small Business">
+									<a>
+										<img src="@Url.Content("~/content/images/small-business-icon.png")" />
+									</a>
+								</li>
+								<li data-name="Cash">
+									<a>
+										<img src="@Url.Content("~/content/images/cash-icon.png")" />
+									</a>
+								</li>
+								<li data-name="Debt">
+									<a>
+										<img src="@Url.Content("~/content/images/debt-icon.png")" />
+									</a>
+								</li>
+								<li data-name="Real Estate">
+									<a>
+										<img src="@Url.Content("~/content/images/real-estate-icon.png")" />
+									</a>
+								</li>
+							</ul>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="rate_body">
+                       <div class="your_rate_cont">
+                           <h2 class="white" data-bind="text: r() + '%'">7.25%</h2>
+                           <div class="white estimated_txt">estimated</div>
+                       </div>
+                        <div class="payment_cont">
+                            <table>
+                                <tr>
+                                    <td>Monthly Payment</td>
+                                    <td data-bind="text: '$' + emi.toDigit()" style="text-align: right;">$1,777</td>
+                                </tr>
+                                 <tr>
+                                    <td>Principal Amount</td>
+                                    <td data-bind="text: '$' + PV.toDigit()" style="text-align: right;">$50,000</td>
+                                </tr>
+                                 <tr>
+                                    <td class="bb_none">Repayment</td>
+                                    <td class="bb_none" data-bind="text: '$' + FV.toDigit()" style="text-align: right;">$63,987</td>
+                                </tr>
+                            </table>
+
+                        </div>
+                    </div>
+                    
+                    <div class="clear"></div>
+                    <a class="apply_btn" data-bind="attr: { href: '@Url.Action("application")?pv=' + PV() + '&cRating=' + cRating() + '&reason=' + reason() }">
+                        <img src="@Url.Content("~/content/images/index/apply_now_btn.png")" /></a>
+
+                </div>
+                <div class="clear"></div>
+
+                <div class="no_txt">
+                    <h3>NO BANKS
+                        <img src="@Url.Content("~/content/images/black-icon.png")" />NO RISK
+                        <img src="@Url.Content("~/content/images/black-icon.png")" />FAIR RATES
+                        <img src="@Url.Content("~/content/images/black-icon.png")" />FAST APPROVAL</h3>
+                </div>
+            </div>
+        </div>
+
+    </div>
+   
+  <div class="no_txt">
+                    <h3>NO BANKS
+                        <img src="@Url.Content("~/content/images/black-icon.png")" />NO RISK
+                        <img src="@Url.Content("~/content/images/black-icon.png")" />FAIR RATES
+                        <img src="@Url.Content("~/content/images/black-icon.png")" />FAST APPROVAL</h3>
+                </div>
+
+
+
+   
+    <div class="clear"></div>
+    <div class="com_def_body">
+        <div class="com_def_body_white">
+            <div class="container grey_bg">
+                <div class="def_right">
+                   
+                    <img src="@Url.Content("~/content/images/index/Private-Credit.png")" />
+                </div>
+                <div class="def_left">
+                    <h1>Private Credit Lending</h1>
+                    <p>
+                        No matter the need, LOANZ is able to provide access to real people willing 
+to lend money.
+                    </p>
+                    <a href="borrow.html#peertopeer">Read about how Private Credit Lending works</a>
+                </div>
+
+            </div>
+        </div>
+        <div class="arrow_down arrow_white m_bot-85"></div>
+        <div class="clear"></div>
+        <div class="com_def_body_grey">
+
+            <div class="container white_bg">
+                <div class="def_left">
+                    
+                    <img src="@Url.Content("~/content/images/index/Just-Number.png")" />
+                </div>
+                <div class="def_right">
+                    <h1>More than Just a Number</h1>
+                    <p>
+                        Getting the best rates used to be about having the highest FICO score. At LOANZ our investors don't see a number, they see and invest in people.
+                    </p>
+                    <a href="borrow.html#morethannumber">Read about how everyone can apply for loans</a>
+
+
+                </div>
+
+            </div>
+
+
+        </div>
+        <div class="arrow_down arrow_grey m_bot-85"></div>
+        <div class="clear"></div>
+        <div class="com_def_body_white">
+            <div class="container grey_bg">
+                <div class="def_right">
+             
+                    <img src="@Url.Content("~/content/images/index/Safe-Secure.png")" />
+                </div>
+                <div class="def_left">
+                    <h1>Confidential. Safe. Secure.</h1>
+                    <p>
+                        At LOANZ, your identify is protected and never shared
+                    </p>
+                    <a href="#">Read how LOANZ protects your privacy</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="clear"></div>
+        
+    </div>
+    <div class="footer_border">
+      
+    </div>
+

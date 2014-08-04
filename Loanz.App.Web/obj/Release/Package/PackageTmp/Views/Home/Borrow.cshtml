@@ -1,0 +1,182 @@
+﻿@{
+	ViewBag.Title = "LOANZ - Real Loans from Real People";
+}
+
+@section styles{
+	@Styles.Render("~/Content/css/bootstrap")
+    @Styles.Render("~/Content/css/normalize")
+	@Styles.Render("~/Content/css/style")
+	@Styles.Render("~/Content/css/component")
+	<link href="~/Content/css/Slider.css" rel="stylesheet" type="text/css" />
+}
+
+@section scripts {
+	@Scripts.Render("~/scripts/jquery")
+	@Scripts.Render("~/scripts/carousel")
+	<script type="text/javascript">
+		$(document).ready(function () {
+			$("#flexiselDemo1").flexisel({
+				visibleItems: 1
+			});
+		})
+	</script>
+}
+
+
+	<div class="borrow_new_top">
+		<div class="container blue_bg">
+			<h1>Borrow</h1>
+
+
+		</div>
+	</div>
+
+	<div class="arrow_down arrow_sky"></div>
+	<div class="clear"></div>
+	<div class="com_def_body">
+		<div class="borrow_com_body_white">
+			<div class="container white_bg">
+				<div class="def_right">
+					<img src="@Url.Content("~/content/images/get-Loan.png")" />
+
+				</div>
+
+				<div class="def_left">
+					<h1>How to get a Loan</h1>
+					<p>
+						You need cash. Perhaps you have a small business that needs to expand, or require an extra $10,000 for that wedding. You answer a few simple questions and LOANZ submits your request to lenders who then decide how much they would like to lend. Once your loan has been accepted, you get the cash and our lenders get paid back over time.<br />
+						<br />
+						No matter the need, LOANZ is able to provide access to real people willing to lend money. These lenders understand the risk, and the interest rate they charge is based on that risk. They have a vested interest to see you succeed, and are willing to take the chance to support you based on your own credit worthiness.
+
+					</p>
+
+
+
+				</div>
+
+			</div>
+		</div>
+		<div class="arrow_down arrow_white m_bot-85"></div>
+		<div class="clear"></div>
+		<div class="borrow_com_body_grey" id="peertopeer">
+
+			<div class="container grey_bg">
+				<div class="borrow_scroll_left">
+
+					<ul id="flexiselDemo1">
+
+						<li><a>
+							<img src="@Url.Content("~/content/images/borrow-cash-icon.png")" />
+
+						</a>
+						</li>
+
+						<li><a>
+							<img src="@Url.Content("~/content/images/borrow-medical-icon.png")" />
+
+						</a>
+						</li>
+
+						<li><a>
+							<img src="@Url.Content("~/content/images/borrow-growth-icon.png")" />
+
+						</a>
+						</li>
+
+						<li><a>
+							<img src="@Url.Content("~/content/images/borrow-show-return-icon.png")" />
+
+						</a>
+						</li>
+
+						<li><a>
+							<img src="@Url.Content("~/content/images/borrow-cost-icon.png")" />
+
+						</a>
+						</li>
+						<li><a>
+							<img src="@Url.Content("~/content/images/borrow-pie-icon.png")" />
+
+						</a>
+						</li>
+
+					</ul>
+				</div>
+
+				<div class="def_right">
+					<h1>The world of Peer to Peer Lending</h1>
+					<p>
+						John, meet Jack... Jill, Bob, Wendy and Frank. In fact, there are hundreds of people we'd like to introduce you to, all willing to give you money in return for your promise to pay them back over time. This is all part of a generational shift in how people do business. A shift that is powered by technology that quickly, easily and safely connects people to a trusted network. This is a safe, secure and affordable way to now get the extra cash you need to help you grow your business, cover that emergency medical cost or just simply take the vacation you’ve always wanted.
+
+					</p>
+					<h2>NO BANKS</h2>
+					<p>
+						The great thing about peer-to-peer lending is that are no banks involved. We remove the middle man entirely from the process, which helps get loans funded easier and faster than ever before. The chances are also much higher that you’ll get a lower rate since the banks are not taking a cut from the payments you have to make. This is better for you, and also for the investors that are able to work with you directly.
+
+					</p>
+					<h2>WHY USE PEER TO PEER:</h2>
+					<p>
+						There are many reasons why people look to the peer to peer marketplace to get loans. One of the main ones is that traditional banks or credit unions are simply too inflexible. For example, it is often hard for the self-employed to get a loan, or for those people that may have had trouble with financing before – even those that may missed a gas payment. They often have to settle for long delays, extra paper work and higher rates. At Loanz we believe these people deserve a chance at getting a reasonable loan, easier and faster than the banks, and our Peer investors believe it as well.
+
+					</p>
+
+				</div>
+
+			</div>
+
+
+		</div>
+		<div class="arrow_down arrow_grey m_bot-85"></div>
+		<div class="clear"></div>
+		<div class="borrow_com_body_white" id="morethannumber">
+			<div class="container white_bg">
+				<div class="def_right">
+					<img src="@Url.Content("~/content/images/make-money.png")" />
+
+				</div>
+				<div class="def_left">
+					<h1>More Than Just a Number</h1>
+					<p>
+						One of the most important elements of getting a loan is to make sure we create a LOANZ score that accurately and fairly represents who you are. This is done through a variety of methods, such as performing a credit check, along with some additional methods unique to LOANZ. Taken collectively, these are combine to create a more complete view of who you are and your ability to repay the loan – which is what investors care most about. Following is a snapshot of just some of the metrics we use at LOANZ to help build your profile:
+
+					</p>
+					
+					<h2 class="borrow_tab_title" >What we look for</h2>
+					
+					<table class="borrow_tab">
+						
+						<tr class="grey_bg">
+							<td><h3><b>Credit Report</b></h3></td>
+							<td>
+								<h3><b>What does not help:</b></h3>
+								<ul>
+									<li>recent bankruptcies or outstanding...</li>
+									<li>severe delinquencies</li>
+								</ul>
+								<h3><b>What Helps:</b></h3>
+								<ul>
+									<li>on-time payments</li>
+									<li>etc</li>
+								</ul>
+							</td>
+						</tr>
+						<tr>
+							<td><h3><b>Business</b></h3></td>
+							<td>If self employed...</td>
+						</tr>
+						<tr class="grey_bg">
+							<td><h3><b>Loan Purpose</b></h3></td>
+							<td>Why you need the loan and what you plan on using it for. E.g</td>
+						</tr>
+					</table>
+
+
+				</div>
+
+			</div>
+		</div>
+
+	</div>
+	<div class="footer_border">
+		<img src="@Url.Content("~/content/images/arrow_down_sky.png")" />
+	</div>

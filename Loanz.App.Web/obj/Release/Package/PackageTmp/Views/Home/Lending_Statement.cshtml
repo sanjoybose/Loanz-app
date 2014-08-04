@@ -1,0 +1,302 @@
+﻿@{
+	ViewBag.Title = "Lending Statement";
+}
+
+@section styles{
+	@Styles.Render("~/Content/css/bootstrap")
+	@Styles.Render("~/Content/css/style")
+	<style type="text/css">
+		.application_navbar_lending {
+			width: 100%;
+			border-top: solid 5px #0c1c2c;
+			min-height: 85px;
+			margin-top: 65px;
+		}
+
+			.application_navbar_lending .top {
+				width: 100%;
+				border-bottom: solid 5px #ddd7d9;
+				min-height: 75px;
+				background: #01b3e3;
+			}
+
+				.application_navbar_lending .top .left {
+					width: 70%;
+					min-height: 75px;
+					float: left;
+					padding-top: 15px;
+				}
+
+					.application_navbar_lending .top .left h1 {
+						font-size: 35px;
+						color: #fff;
+						margin: 0;
+					}
+
+				.application_navbar_lending .top .right {
+					width: 30%;
+					min-height: 75px;
+					float: right;
+					padding: 15px;
+				}
+
+		.lending_statement_cont {
+			width: 75%;
+			margin: 0 auto;
+		}
+
+		.Disclosure_Statement {
+			width: 100%;
+			height: 440px;
+			border-top: solid 3px #2c4ea6;
+			border-bottom: solid 3px #2c4ea6;
+			overflow-y: scroll;
+		}
+
+			.Disclosure_Statement .lender {
+				width: 50%;
+				float: left;
+			}
+
+			.Disclosure_Statement .borrower {
+				width: 49%;
+				float: left;
+			}
+
+		.Disclosure_Statement_com {
+			width: 25%;
+			height: 250px;
+			float: left;
+			border: solid 1px #ccc;
+			padding: 10px 25px;
+			margin-top: 15px;
+		}
+
+		.certifications img {
+			vertical-align: bottom;
+		}
+	</style>
+}
+
+@section scripts {
+	@Scripts.Render("~/scripts/jquery")
+	@Scripts.Render("~/scripts/ko")
+	@Scripts.Render("~/scripts/ko-kendo")
+	<script type="text/javascript" src="@Url.Content("~/Scripts/purl.js")"></script>
+	<script type="text/javascript" src="@Url.Content("~/Scripts/vm_loan.js")"></script>
+
+	<script type="text/javascript">
+		$(document).ready(function () {
+			var urlOptions = purl().param();
+			if (urlOptions.pv && urlOptions.cRating) {
+				var pv = parseInt(urlOptions.pv);
+				var cRating = parseInt(urlOptions.cRating);
+				var reason = urlOptions.reason;
+				if (!isNaN(pv) && !isNaN(cRating)) {
+					vm = new vmLoan(pv, cRating, reason);
+				}
+				else {
+					vm = new vmLoan();
+				}
+			}
+			else {
+				vm = new vmLoan();
+			}
+			
+			ko.applyBindings(vm);
+		});
+	</script>
+
+
+}
+
+
+
+
+<div class="application_navbar_lending">
+	<div class="top">
+		<div class="container">
+			<div class="left">
+				<a href="#" class="float_left">
+					<img src="@Url.Content("~/content/images/app_arrow_left.png")" /></a>
+				<h1 class="float_left">Loanz Application:</h1>
+			</div>
+			<div class="right">
+				<a href="#" class="float_right">
+					<img src="@Url.Content("~/content/images/app_lock_right.png")" /></a>
+
+			</div>
+		</div>
+	</div>
+	<div class="clear"></div>
+</div>
+<div class="container">
+	<div class="lending_statement_cont">
+		<h2>Your Household Expenses Loan Terms</h2>
+		<br />
+		<span class="float_left">Truth in Lending Disclosure: </span>
+		<span class="float_right"><a href="#">View printer friendly version </a></span>
+		<div class="clear"></div>
+
+		<div class="Disclosure_Statement">
+			<h3>Truth in Lending Disclosure Statement (initial)</h3>
+			<p>Provided on 17-Jul-2014 for listing #1535299 </p>
+			<div class="clear"></div>
+			<div class="lender">
+				<b>Lender:</b>
+				<br />
+				WebBank
+				<br />
+				215 South State Street, Suite 800<br />
+				Salt Lake City, UT 84111
+				<br />
+			</div>
+			<div class="borrower">
+				<b>Borrower:</b>
+				<br />
+				Brent McKendry
+				<br />
+				22 WILD ROSE PL
+				<br />
+				ALISO VIEJO, CA 92656<br />
+			</div>
+			<div class="clear"></div>
+			<div class="Disclosure_Statement_com">
+				<h4><b>ANNUAL PERCENTAGE RATE</b></h4>
+				<p>
+					The cost of your credit as a yearly rate.<br />
+					<br />
+					7.654 %
+				</p>
+			</div>
+			<div class="Disclosure_Statement_com">
+				<h4><b>FINANCE CHARGE</b></h4>
+				<br />
+				<p>
+					The dollar amount the credit will cost you.<br />
+					<br />
+					$600.26
+				</p>
+			</div>
+			<div class="Disclosure_Statement_com">
+				<h4><b>AMOUNT FINANCED</b></h4>
+				<br />
+				<p>
+					The amount of credit provided to you or on your behalf.<br />
+					<br />
+					$4,900.00
+				</p>
+			</div>
+			<div class="Disclosure_Statement_com">
+				<h4><b>TOTAL OF PAYMENTS</b></h4>
+				<br />
+				<p>
+					The amount you will have paid after you have made all payments as scheduled.<br />
+					<br />
+					$5,500.26
+				</p>
+			</div>
+			<div class="clear"></div>
+			<br />
+			<div>
+				<b>Your payment schedule will be: </b>
+				<table class="table table-bordered">
+					<tr>
+						<th>Number of payments</th>
+						<th>Amount of payments</th>
+						<th>When payments are due</th>
+					</tr>
+					<tr>
+						<td>35</td>
+						<td>$152.77</td>
+						<td>Monthly beginning Aug-31-2014</td>
+					</tr>
+					<tr>
+						<td>1</td>
+						<td>$153.31</td>
+						<td>Final payment Jul-31-2017</td>
+					</tr>
+				</table>
+			</div>
+
+			<div>
+				<b>Late Charge: </b>
+				<span>If a payment is late, you will be charged a late fee of the greater of 5.00 % of the unpaid installment amount, or $15.</span><br />
+				<br />
+				<b>Prepayment: </b>
+				<span>If you pay off early, you will not have to pay a penalty, and you will not be entitled to a refund of any prepaid finance charge.</span><br />
+				<br />
+				<span>See your contract documents for any additional information about nonpayment, default, any required repayment in full before the scheduled date, and prepayment.</span><br />
+				<br />
+				<span>All numerical disclosures except the annual percentage rate and the late payment disclosure are estimates based on the loan amount you designate in your listing.</span><br />
+				<br />
+				<span>Itemization of the Amount Financed of $4,900.00: </span>
+				<br />
+				<span>$4,900.00  given to you directly.</span><br />
+				<span>$100.00 Prepaid Finance Charge.</span><br />
+				<table class="table table-bordered">
+					<tr>
+						<th>Fees</th>
+						<th colspan="2"></th>
+					</tr>
+					<tr>
+						<td>Origination fee:</td>
+						<td>$100.00</td>
+						<td>The origination fee is based on the percentage of amount borrowed. We are providing you with the origination fee that you would pay if your loan is fully funded. The origination fee will be deducted from your loan proceeds. This fee is fully earned at the time the loan is made and is non-refundable. You will only pay this fee if you receive the loan.</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+
+
+		<h3>Please read the following important information
+		</h3>
+
+
+		By clicking the button below, you instruct Prosper to display your listing publicly on the Prosper loan marketplace, and you agree to the following:
+	<ul>
+		<li>If your loan is funded, you are committing to repay it in the amount and at the interest rate specified.</li>
+		<li>You agree a loan will fund within 14 days at the amount and rate available if it is at least 70% funded.</li>
+		<li>You warrant and represent that the statements and information in your loan request are true and correct.</li>
+		<li>You agree that Prosper may require further proof of identity, address, bank account, income, or employment before your loan is approved for funding.</li>
+	</ul>
+
+		<h3>Clicking the box below constitutes your acceptance of:
+		</h3>
+
+		<input type="checkbox" id="chkAccept" />
+		<label for="chkAccept">
+			the <a href="#">payment authorization</a> and the <a href="#">borrower registration agreement.</a>
+		</label>
+		<br />
+		<br />
+		This Truth in Lending Disclosure Statement and other important legal notices are stored in your Prosper account for your reference.
+	<br />
+		<br />
+
+		<a class="btn btn-success" data-bind="attr: { href: '@Url.Action("congratulation")?pv=' + PV() + '&cRating=' + cRating() + '&reason=' + reason() }">
+                        Continue</a>
+
+		@*<button class="btn btn-success">Continue</button>*@
+
+		<br />
+		<br />
+		<h3>Privacy at Prosper</h3>
+		We will never sell your personal information. 
+See <a href="#">Prosper's privacy policy</a> and <a href="#">WebBank's privacy policy</a> for more details. 
+	<br />
+		<br />
+		For Massachusetts residents, the minimum loan amount is $6,001.
+
+	<br />
+		<br />
+		<div class="certifications">
+			<img src= "@Url.Content("~/Content/images/secured_by_thawte.png")" />
+			<img src="@Url.Content("~/Content/images/trust-e-certified.png")" />
+			<img src="@Url.Content("~/Content/images/privacy-protected.png")" />
+			<img src="@Url.Content("~/Content/images/equal-housing-lender.png")" />
+		</div>
+	</div>
+	<br />
+	<br />
+</div>
